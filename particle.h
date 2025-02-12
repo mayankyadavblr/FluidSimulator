@@ -11,7 +11,7 @@ struct Particle {
     float radius = 1;
 };
 
-bool detect_collision(Particle& p1, Particle& p2);
+void detect_collision(Particle& p1, Particle& p2);
 
 void resolve_collision(Particle& p1, Particle& p2, float e = 1);
 
