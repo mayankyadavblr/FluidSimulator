@@ -69,7 +69,7 @@ Vector projection(Vector v1, Vector v2) {
     float mag2 = magnitude(v2);
     float mag1 = magnitude(v1);
 
-    return v2 * (dot_product/mag2);
+    return v2 * (dot_product/pow(mag2, 1));
 }
 
 float distance(Vector v1, Vector v2) {
