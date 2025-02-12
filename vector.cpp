@@ -71,3 +71,15 @@ Vector projection(Vector v1, Vector v2) {
 
     return v2 * (dot_product/mag2);
 }
+
+float distance(Vector v1, Vector v2) {
+    /*
+    Distance between two points in 2-D
+    coordinate system given by their vector
+    position.
+
+    formula: classic distance formula (RMS)
+    */
+
+    return pow(pow(v1.x - v2.x, 2) + pow(v1.y - v2.y, 2), 0.5);
+}
