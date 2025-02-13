@@ -41,7 +41,6 @@ void update_frame(Frame& frame){
         }
         for (size_t i = 0; i < frame.all_particles.size(); ++i){
             update_particle(frame.all_particles[i], frame.dt);
-            // std::cout << "particle " << i << "position: " << frame.all_particles[i].position.x <<","<< frame.all_particles[i].position.y<<std::endl;
         }
         frame_count++;
     }
