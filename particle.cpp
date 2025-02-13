@@ -11,7 +11,7 @@ void detect_collision(Particle& p1, Particle& p2) {
     in the case the boundaries exactly touch
     (unlikely) then collision is resolved directly
     */
-    float distance_btw_centers = distance(p1.position, p2.position);
+    double distance_btw_centers = distance(p1.position, p2.position);
     if (distance_btw_centers < 2*p1.radius) {
         resolve_intersection(p1, p2);
         resolve_collision(p1, p2);
@@ -38,13 +38,13 @@ void resolve_intersection(Particle& p1, Particle& p2) {
     are modified in place. Testing required
     */
     Vector line_of_contact = p1.position - p2.position;
-    float distance_intersected = 2 * p1.radius - distance(p1.position, p2.position);
+    double distance_intersected = 2 * p1.radius - distance(p1.position, p2.position);
     
     p1.position = p1.position - line_of_contact * (distance_intersected / 2);
     p2.position = p2.position + line_of_contact * (distance_intersected / 2);
 }
 
-void resolve_collision(Particle& p1, Particle& p2, float e = 1) {
+void resolve_collision(Particle& p1, Particle& p2, double e) {
     /*
     Updates velocities of particles upon collision
     Gets projection of velocity along line of contact

@@ -2,31 +2,31 @@
 #define VECTOR_H
 
 struct Vector {
-    float x;
-    float y;    
+    double x;
+    double y;    
     
 };
 
-inline Vector operator +(Vector lhs, Vector rhs);
+Vector operator +(Vector lhs, Vector rhs);
 
-inline Vector operator -(Vector lhs, Vector rhs);
+Vector operator -(Vector lhs, Vector rhs);
 
-inline Vector operator *(Vector lhs, Vector rhs);
+Vector operator *(Vector lhs, Vector rhs);
 
-inline Vector operator *(Vector lhs, float rhs);
+Vector operator *(Vector lhs, double rhs);
 
-inline Vector operator /(Vector lhs, Vector rhs);
+Vector operator /(Vector lhs, Vector rhs);
 
-inline bool operator ==(Vector lhs, Vector rhs);
+bool operator ==(Vector lhs, Vector rhs);
 
-float dot(Vector lhs, Vector rhs);
+double dot(Vector lhs, Vector rhs);
 
-float magnitude(Vector v);
+double magnitude(Vector v);
 
-float angle_between_vectors(Vector v1, Vector v2);
+double angle_between_vectors(Vector v1, Vector v2);
 
 Vector projection(Vector v1, Vector v2);
 
-float distance(Vector v1, Vector v2);
+double distance(Vector v1, Vector v2);
 
 #endif 

@@ -3,7 +3,7 @@
 #include <chrono>
 #include <iostream>
 
-void update_particle(Particle& p, float dt){
+void update_particle(Particle& p, double dt){
     /*
     Updates a particle's position
     velocity and acceleration
@@ -17,6 +17,8 @@ void update_particle(Particle& p, float dt){
 
     p.position = p.position + p.velocity * dt + p.acceleration * 0.5 * pow(dt, 2);
     p.velocity = p.velocity + p.acceleration * dt;
+    // std::cout << "particle position: " << p.position.x <<","<< p.position.y<<std::endl;
+
     //p.acceleration = p.acceleration; NO CHANGE NEEDED
 
 }
@@ -39,10 +41,12 @@ void update_frame(Frame& frame){
         }
         for (size_t i = 0; i < frame.all_particles.size(); ++i){
             update_particle(frame.all_particles[i], frame.dt);
-            std::cout << "particle " << i << "position: " << frame.all_particles[i].position.x <<","<< frame.all_particles[i].position.y<<std::endl;
+            // std::cout << "particle " << i << "position: " << frame.all_particles[i].position.x <<","<< frame.all_particles[i].position.y<<std::endl;
         }
+        frame_count++;
     }
     auto finish = std::chrono::high_resolution_clock::now();
     auto microseconds = std::chrono::duration_cast<std::chrono::microseconds>(finish-start);
-    std::cout << microseconds.count() << "µs\n";
+    std::cout << microseconds.count() << "us\n";
+
 }
