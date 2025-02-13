@@ -1,5 +1,7 @@
 #include "frame.h"
 #include <cmath>
+#include <chrono>
+#include <iostream>
 
 void update_particle(Particle& p, float dt){
     /*
@@ -27,4 +29,20 @@ void update_frame(Frame& frame){
 
     TO DO: entire function
     */
+    int frame_count = 0;
+    auto start = std::chrono::high_resolution_clock::now();
+    while (frame_count < 60){
+        for (size_t i = 0; i < frame.all_particles.size() - 1; ++i) {
+            for (size_t j = i + 1; j < frame.all_particles.size(); ++j) {
+                detect_collision(frame.all_particles[i], frame.all_particles[j]);
+            }
+        }
+        for (size_t i = 0; i < frame.all_particles.size(); ++i){
+            update_particle(frame.all_particles[i], frame.dt);
+            std::cout << "particle " << i << "position: " << frame.all_particles[i].position.x <<","<< frame.all_particles[i].position.y<<std::endl;
+        }
+    }
+    auto finish = std::chrono::high_resolution_clock::now();
+    auto microseconds = std::chrono::duration_cast<std::chrono::microseconds>(finish-start);
+    std::cout << microseconds.count() << "µs\n";
 }
