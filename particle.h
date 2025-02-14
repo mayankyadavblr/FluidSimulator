@@ -9,6 +9,7 @@ struct Particle {
     Vector acceleration = Vector{0, -9.81};
 
     double radius = 1;
+    double mass = 1;
 };
 
 void detect_collision(Particle& p1, Particle& p2);
@@ -16,5 +17,7 @@ void detect_collision(Particle& p1, Particle& p2);
 void resolve_collision(Particle& p1, Particle& p2, double e = 1);
 
 void resolve_intersection(Particle& p1, Particle& p2);
+
+void display_details(Particle p);
 
 #endif 

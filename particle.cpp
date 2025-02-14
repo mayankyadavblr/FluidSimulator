@@ -1,5 +1,6 @@
 #include <cmath>
 #include "particle.h"
+#include <iostream>
 
 void detect_collision(Particle& p1, Particle& p2) {
     /*
@@ -38,10 +39,12 @@ void resolve_intersection(Particle& p1, Particle& p2) {
     are modified in place. Testing required
     */
     Vector line_of_contact = p1.position - p2.position;
-    double distance_intersected = 2 * p1.radius - distance(p1.position, p2.position);
+    line_of_contact = line_of_contact / magnitude(line_of_contact);
     
-    p1.position = p1.position - line_of_contact * (distance_intersected / 2);
-    p2.position = p2.position + line_of_contact * (distance_intersected / 2);
+    double distance_intersected = 2 * p1.radius - distance(p1.position, p2.position);
+
+    p1.position = p1.position + line_of_contact * (distance_intersected / 2.00);
+    p2.position = p2.position - line_of_contact * (distance_intersected / 2.00);
 }
 
 void resolve_collision(Particle& p1, Particle& p2, double e) {
@@ -63,5 +66,14 @@ void resolve_collision(Particle& p1, Particle& p2, double e) {
     
     p1.velocity = p1.velocity - projection(p1.velocity, line_of_contact) * 2;
     p2.velocity = p2.velocity + projection(p2.velocity, line_of_contact) * 2;
+    
+    std::cout << "Collision occured" << std::endl;
+    display_details(p1);
+    display_details(p2);
+}
 
+void display_details(Particle p) {
+    std::cout << "Position: "<< p.position.x << ", " << p.position.y<<std::endl;
+    std::cout << "Velocity: "<< p.velocity.x << ", " << p.velocity.y<<std::endl;
+    std::cout<<std::endl;
 }

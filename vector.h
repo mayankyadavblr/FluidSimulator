@@ -15,7 +15,7 @@ Vector operator *(Vector lhs, Vector rhs);
 
 Vector operator *(Vector lhs, double rhs);
 
-Vector operator /(Vector lhs, Vector rhs);
+Vector operator /(Vector lhs, double rhs);
 
 bool operator ==(Vector lhs, Vector rhs);
 

@@ -33,7 +33,7 @@ void update_frame(Frame& frame){
     */
     int frame_count = 0;
     auto start = std::chrono::high_resolution_clock::now();
-    while (frame_count < 60){
+    while (frame_count < 5){
         for (size_t i = 0; i < frame.all_particles.size() - 1; ++i) {
             for (size_t j = i + 1; j < frame.all_particles.size(); ++j) {
                 detect_collision(frame.all_particles[i], frame.all_particles[j]);
