@@ -62,14 +62,20 @@ void resolve_collision(Particle& p1, Particle& p2, double e) {
     2. Cannot be sure that the positions
     are modified in place. Testing required
     */
-    Vector line_of_contact = p1.position = p2.position;
+    // std::cout << "Collision occured, before: " << std::endl;
+    // display_details(p1);
+    // display_details(p2);
+
+    Vector line_of_contact = p1.position - p2.position;
+    Vector speed_along_loc_p1 = projection(p1.velocity, line_of_contact);
+    Vector speed_along_loc_p2 = projection(p2.velocity, line_of_contact);
     
-    p1.velocity = p1.velocity - projection(p1.velocity, line_of_contact) * 2;
-    p2.velocity = p2.velocity + projection(p2.velocity, line_of_contact) * 2;
+    p1.velocity = p1.velocity - speed_along_loc_p1 + speed_along_loc_p2;
+    p2.velocity = p2.velocity - speed_along_loc_p2 + speed_along_loc_p1;
     
-    std::cout << "Collision occured" << std::endl;
-    display_details(p1);
-    display_details(p2);
+    // std::cout << "after: " << std::endl;
+    // display_details(p1);
+    // display_details(p2);
 }
 
 void display_details(Particle p) {
