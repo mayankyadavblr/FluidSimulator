@@ -1,0 +1,1 @@
+-I"D:/mayank/Simulators/out/build/cpp_compiler/_deps/vorbis-src/lib" -isystem "D:/mayank/Simulators/out/build/cpp_compiler/_deps/vorbis-src/include" -isystem "D:/mayank/Simulators/out/build/cpp_compiler/_deps/ogg-src/include" -isystem "D:/mayank/Simulators/out/build/cpp_compiler/_deps/ogg-build/include"

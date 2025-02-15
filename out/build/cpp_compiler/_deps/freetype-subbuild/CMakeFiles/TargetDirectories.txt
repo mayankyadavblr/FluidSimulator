@@ -1,0 +1,3 @@
+D:/mayank/Simulators/out/build/cpp_compiler/_deps/freetype-subbuild/CMakeFiles/freetype-populate.dir
+D:/mayank/Simulators/out/build/cpp_compiler/_deps/freetype-subbuild/CMakeFiles/edit_cache.dir
+D:/mayank/Simulators/out/build/cpp_compiler/_deps/freetype-subbuild/CMakeFiles/rebuild_cache.dir

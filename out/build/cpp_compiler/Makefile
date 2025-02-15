@@ -114,19 +114,57 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\" \"devel\" \"headers\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	"C:\Program Files\CMake\bin\cmake.exe" -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	"C:\Program Files\CMake\bin\cmake.exe" -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start D:\mayank\Simulators\out\build\cpp_compiler\CMakeFiles D:\mayank\Simulators\out\build\cpp_compiler\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
 	$(CMAKE_COMMAND) -E cmake_progress_start D:\mayank\Simulators\out\build\cpp_compiler\CMakeFiles 0
 .PHONY : all
-
-# The main codegen target
-codegen: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\mayank\Simulators\out\build\cpp_compiler\CMakeFiles D:\mayank\Simulators\out\build\cpp_compiler\\CMakeFiles\progress.marks
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 codegen
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\mayank\Simulators\out\build\cpp_compiler\CMakeFiles 0
-.PHONY : codegen
 
 # The main clean target
 clean:
@@ -529,6 +567,175 @@ ContinuousSubmit/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ContinuousSubmit.dir\build.make CMakeFiles/ContinuousSubmit.dir/build
 .PHONY : ContinuousSubmit/fast
 
+#=============================================================================
+# Target rules for targets named sfml-system
+
+# Build rule for target.
+sfml-system: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 sfml-system
+.PHONY : sfml-system
+
+# fast build rule for target.
+sfml-system/fast:
+	$(MAKE) $(MAKESILENT) -f _deps\sfml-build\src\SFML\System\CMakeFiles\sfml-system.dir\build.make _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/build
+.PHONY : sfml-system/fast
+
+#=============================================================================
+# Target rules for targets named sfml-main
+
+# Build rule for target.
+sfml-main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 sfml-main
+.PHONY : sfml-main
+
+# fast build rule for target.
+sfml-main/fast:
+	$(MAKE) $(MAKESILENT) -f _deps\sfml-build\src\SFML\Main\CMakeFiles\sfml-main.dir\build.make _deps/sfml-build/src/SFML/Main/CMakeFiles/sfml-main.dir/build
+.PHONY : sfml-main/fast
+
+#=============================================================================
+# Target rules for targets named sfml-window
+
+# Build rule for target.
+sfml-window: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 sfml-window
+.PHONY : sfml-window
+
+# fast build rule for target.
+sfml-window/fast:
+	$(MAKE) $(MAKESILENT) -f _deps\sfml-build\src\SFML\Window\CMakeFiles\sfml-window.dir\build.make _deps/sfml-build/src/SFML/Window/CMakeFiles/sfml-window.dir/build
+.PHONY : sfml-window/fast
+
+#=============================================================================
+# Target rules for targets named sfml-network
+
+# Build rule for target.
+sfml-network: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 sfml-network
+.PHONY : sfml-network
+
+# fast build rule for target.
+sfml-network/fast:
+	$(MAKE) $(MAKESILENT) -f _deps\sfml-build\src\SFML\Network\CMakeFiles\sfml-network.dir\build.make _deps/sfml-build/src/SFML/Network/CMakeFiles/sfml-network.dir/build
+.PHONY : sfml-network/fast
+
+#=============================================================================
+# Target rules for targets named sfml-graphics
+
+# Build rule for target.
+sfml-graphics: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 sfml-graphics
+.PHONY : sfml-graphics
+
+# fast build rule for target.
+sfml-graphics/fast:
+	$(MAKE) $(MAKESILENT) -f _deps\sfml-build\src\SFML\Graphics\CMakeFiles\sfml-graphics.dir\build.make _deps/sfml-build/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/build
+.PHONY : sfml-graphics/fast
+
+#=============================================================================
+# Target rules for targets named freetype
+
+# Build rule for target.
+freetype: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 freetype
+.PHONY : freetype
+
+# fast build rule for target.
+freetype/fast:
+	$(MAKE) $(MAKESILENT) -f _deps\freetype-build\CMakeFiles\freetype.dir\build.make _deps/freetype-build/CMakeFiles/freetype.dir/build
+.PHONY : freetype/fast
+
+#=============================================================================
+# Target rules for targets named sfml-audio
+
+# Build rule for target.
+sfml-audio: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 sfml-audio
+.PHONY : sfml-audio
+
+# fast build rule for target.
+sfml-audio/fast:
+	$(MAKE) $(MAKESILENT) -f _deps\sfml-build\src\SFML\Audio\CMakeFiles\sfml-audio.dir\build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build
+.PHONY : sfml-audio/fast
+
+#=============================================================================
+# Target rules for targets named ogg
+
+# Build rule for target.
+ogg: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ogg
+.PHONY : ogg
+
+# fast build rule for target.
+ogg/fast:
+	$(MAKE) $(MAKESILENT) -f _deps\ogg-build\CMakeFiles\ogg.dir\build.make _deps/ogg-build/CMakeFiles/ogg.dir/build
+.PHONY : ogg/fast
+
+#=============================================================================
+# Target rules for targets named FLAC
+
+# Build rule for target.
+FLAC: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 FLAC
+.PHONY : FLAC
+
+# fast build rule for target.
+FLAC/fast:
+	$(MAKE) $(MAKESILENT) -f _deps\flac-build\src\libFLAC\CMakeFiles\FLAC.dir\build.make _deps/flac-build/src/libFLAC/CMakeFiles/FLAC.dir/build
+.PHONY : FLAC/fast
+
+#=============================================================================
+# Target rules for targets named benchmark_residual
+
+# Build rule for target.
+benchmark_residual: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 benchmark_residual
+.PHONY : benchmark_residual
+
+# fast build rule for target.
+benchmark_residual/fast:
+	$(MAKE) $(MAKESILENT) -f _deps\flac-build\microbench\CMakeFiles\benchmark_residual.dir\build.make _deps/flac-build/microbench/CMakeFiles/benchmark_residual.dir/build
+.PHONY : benchmark_residual/fast
+
+#=============================================================================
+# Target rules for targets named vorbis
+
+# Build rule for target.
+vorbis: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 vorbis
+.PHONY : vorbis
+
+# fast build rule for target.
+vorbis/fast:
+	$(MAKE) $(MAKESILENT) -f _deps\vorbis-build\lib\CMakeFiles\vorbis.dir\build.make _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/build
+.PHONY : vorbis/fast
+
+#=============================================================================
+# Target rules for targets named vorbisenc
+
+# Build rule for target.
+vorbisenc: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 vorbisenc
+.PHONY : vorbisenc
+
+# fast build rule for target.
+vorbisenc/fast:
+	$(MAKE) $(MAKESILENT) -f _deps\vorbis-build\lib\CMakeFiles\vorbisenc.dir\build.make _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/build
+.PHONY : vorbisenc/fast
+
+#=============================================================================
+# Target rules for targets named vorbisfile
+
+# Build rule for target.
+vorbisfile: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 vorbisfile
+.PHONY : vorbisfile
+
+# fast build rule for target.
+vorbisfile/fast:
+	$(MAKE) $(MAKESILENT) -f _deps\vorbis-build\lib\CMakeFiles\vorbisfile.dir\build.make _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/build
+.PHONY : vorbisfile/fast
+
 src/frame.obj: src/frame.cpp.obj
 .PHONY : src/frame.obj
 
@@ -625,14 +832,41 @@ src/vector.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Fluid_Simulator.dir\build.make CMakeFiles/Fluid_Simulator.dir/src/vector.cpp.s
 .PHONY : src/vector.cpp.s
 
+src/window_sfml.obj: src/window_sfml.cpp.obj
+.PHONY : src/window_sfml.obj
+
+# target to build an object file
+src/window_sfml.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Fluid_Simulator.dir\build.make CMakeFiles/Fluid_Simulator.dir/src/window_sfml.cpp.obj
+.PHONY : src/window_sfml.cpp.obj
+
+src/window_sfml.i: src/window_sfml.cpp.i
+.PHONY : src/window_sfml.i
+
+# target to preprocess a source file
+src/window_sfml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Fluid_Simulator.dir\build.make CMakeFiles/Fluid_Simulator.dir/src/window_sfml.cpp.i
+.PHONY : src/window_sfml.cpp.i
+
+src/window_sfml.s: src/window_sfml.cpp.s
+.PHONY : src/window_sfml.s
+
+# target to generate assembly for a file
+src/window_sfml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Fluid_Simulator.dir\build.make CMakeFiles/Fluid_Simulator.dir/src/window_sfml.cpp.s
+.PHONY : src/window_sfml.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
 	@echo ... all (the default if no target is provided)
 	@echo ... clean
 	@echo ... depend
-	@echo ... codegen
 	@echo ... edit_cache
+	@echo ... install
+	@echo ... install/local
+	@echo ... install/strip
+	@echo ... list_install_components
 	@echo ... package
 	@echo ... package_source
 	@echo ... rebuild_cache
@@ -665,7 +899,20 @@ help:
 	@echo ... NightlySubmit
 	@echo ... NightlyTest
 	@echo ... NightlyUpdate
+	@echo ... FLAC
 	@echo ... Fluid_Simulator
+	@echo ... benchmark_residual
+	@echo ... freetype
+	@echo ... ogg
+	@echo ... sfml-audio
+	@echo ... sfml-graphics
+	@echo ... sfml-main
+	@echo ... sfml-network
+	@echo ... sfml-system
+	@echo ... sfml-window
+	@echo ... vorbis
+	@echo ... vorbisenc
+	@echo ... vorbisfile
 	@echo ... src/frame.obj
 	@echo ... src/frame.i
 	@echo ... src/frame.s
@@ -678,6 +925,9 @@ help:
 	@echo ... src/vector.obj
 	@echo ... src/vector.i
 	@echo ... src/vector.s
+	@echo ... src/window_sfml.obj
+	@echo ... src/window_sfml.i
+	@echo ... src/window_sfml.s
 .PHONY : help
 
 

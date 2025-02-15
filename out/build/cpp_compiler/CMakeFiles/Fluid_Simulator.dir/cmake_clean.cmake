@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Fluid_Simulator.dir/src/particle.cpp.obj.d"
   "CMakeFiles/Fluid_Simulator.dir/src/vector.cpp.obj"
   "CMakeFiles/Fluid_Simulator.dir/src/vector.cpp.obj.d"
+  "CMakeFiles/Fluid_Simulator.dir/src/window_sfml.cpp.obj"
+  "CMakeFiles/Fluid_Simulator.dir/src/window_sfml.cpp.obj.d"
   "Fluid_Simulator.exe"
   "Fluid_Simulator.exe.manifest"
   "Fluid_Simulator.pdb"

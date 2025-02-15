@@ -71,10 +71,26 @@ include CMakeFiles/Fluid_Simulator.dir/flags.make
 CMakeFiles/Fluid_Simulator.dir/codegen:
 .PHONY : CMakeFiles/Fluid_Simulator.dir/codegen
 
+CMakeFiles/Fluid_Simulator.dir/src/window_sfml.cpp.obj: CMakeFiles/Fluid_Simulator.dir/flags.make
+CMakeFiles/Fluid_Simulator.dir/src/window_sfml.cpp.obj: CMakeFiles/Fluid_Simulator.dir/includes_CXX.rsp
+CMakeFiles/Fluid_Simulator.dir/src/window_sfml.cpp.obj: D:/mayank/Simulators/src/window_sfml.cpp
+CMakeFiles/Fluid_Simulator.dir/src/window_sfml.cpp.obj: CMakeFiles/Fluid_Simulator.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\mayank\Simulators\out\build\cpp_compiler\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Fluid_Simulator.dir/src/window_sfml.cpp.obj"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Fluid_Simulator.dir/src/window_sfml.cpp.obj -MF CMakeFiles\Fluid_Simulator.dir\src\window_sfml.cpp.obj.d -o CMakeFiles\Fluid_Simulator.dir\src\window_sfml.cpp.obj -c D:\mayank\Simulators\src\window_sfml.cpp
+
+CMakeFiles/Fluid_Simulator.dir/src/window_sfml.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Fluid_Simulator.dir/src/window_sfml.cpp.i"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\mayank\Simulators\src\window_sfml.cpp > CMakeFiles\Fluid_Simulator.dir\src\window_sfml.cpp.i
+
+CMakeFiles/Fluid_Simulator.dir/src/window_sfml.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Fluid_Simulator.dir/src/window_sfml.cpp.s"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\mayank\Simulators\src\window_sfml.cpp -o CMakeFiles\Fluid_Simulator.dir\src\window_sfml.cpp.s
+
 CMakeFiles/Fluid_Simulator.dir/src/frame.cpp.obj: CMakeFiles/Fluid_Simulator.dir/flags.make
+CMakeFiles/Fluid_Simulator.dir/src/frame.cpp.obj: CMakeFiles/Fluid_Simulator.dir/includes_CXX.rsp
 CMakeFiles/Fluid_Simulator.dir/src/frame.cpp.obj: D:/mayank/Simulators/src/frame.cpp
 CMakeFiles/Fluid_Simulator.dir/src/frame.cpp.obj: CMakeFiles/Fluid_Simulator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\mayank\Simulators\out\build\cpp_compiler\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Fluid_Simulator.dir/src/frame.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\mayank\Simulators\out\build\cpp_compiler\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Fluid_Simulator.dir/src/frame.cpp.obj"
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Fluid_Simulator.dir/src/frame.cpp.obj -MF CMakeFiles\Fluid_Simulator.dir\src\frame.cpp.obj.d -o CMakeFiles\Fluid_Simulator.dir\src\frame.cpp.obj -c D:\mayank\Simulators\src\frame.cpp
 
 CMakeFiles/Fluid_Simulator.dir/src/frame.cpp.i: cmake_force
@@ -86,9 +102,10 @@ CMakeFiles/Fluid_Simulator.dir/src/frame.cpp.s: cmake_force
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\mayank\Simulators\src\frame.cpp -o CMakeFiles\Fluid_Simulator.dir\src\frame.cpp.s
 
 CMakeFiles/Fluid_Simulator.dir/src/main.cpp.obj: CMakeFiles/Fluid_Simulator.dir/flags.make
+CMakeFiles/Fluid_Simulator.dir/src/main.cpp.obj: CMakeFiles/Fluid_Simulator.dir/includes_CXX.rsp
 CMakeFiles/Fluid_Simulator.dir/src/main.cpp.obj: D:/mayank/Simulators/src/main.cpp
 CMakeFiles/Fluid_Simulator.dir/src/main.cpp.obj: CMakeFiles/Fluid_Simulator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\mayank\Simulators\out\build\cpp_compiler\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Fluid_Simulator.dir/src/main.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\mayank\Simulators\out\build\cpp_compiler\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Fluid_Simulator.dir/src/main.cpp.obj"
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Fluid_Simulator.dir/src/main.cpp.obj -MF CMakeFiles\Fluid_Simulator.dir\src\main.cpp.obj.d -o CMakeFiles\Fluid_Simulator.dir\src\main.cpp.obj -c D:\mayank\Simulators\src\main.cpp
 
 CMakeFiles/Fluid_Simulator.dir/src/main.cpp.i: cmake_force
@@ -100,9 +117,10 @@ CMakeFiles/Fluid_Simulator.dir/src/main.cpp.s: cmake_force
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\mayank\Simulators\src\main.cpp -o CMakeFiles\Fluid_Simulator.dir\src\main.cpp.s
 
 CMakeFiles/Fluid_Simulator.dir/src/particle.cpp.obj: CMakeFiles/Fluid_Simulator.dir/flags.make
+CMakeFiles/Fluid_Simulator.dir/src/particle.cpp.obj: CMakeFiles/Fluid_Simulator.dir/includes_CXX.rsp
 CMakeFiles/Fluid_Simulator.dir/src/particle.cpp.obj: D:/mayank/Simulators/src/particle.cpp
 CMakeFiles/Fluid_Simulator.dir/src/particle.cpp.obj: CMakeFiles/Fluid_Simulator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\mayank\Simulators\out\build\cpp_compiler\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Fluid_Simulator.dir/src/particle.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\mayank\Simulators\out\build\cpp_compiler\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Fluid_Simulator.dir/src/particle.cpp.obj"
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Fluid_Simulator.dir/src/particle.cpp.obj -MF CMakeFiles\Fluid_Simulator.dir\src\particle.cpp.obj.d -o CMakeFiles\Fluid_Simulator.dir\src\particle.cpp.obj -c D:\mayank\Simulators\src\particle.cpp
 
 CMakeFiles/Fluid_Simulator.dir/src/particle.cpp.i: cmake_force
@@ -114,9 +132,10 @@ CMakeFiles/Fluid_Simulator.dir/src/particle.cpp.s: cmake_force
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\mayank\Simulators\src\particle.cpp -o CMakeFiles\Fluid_Simulator.dir\src\particle.cpp.s
 
 CMakeFiles/Fluid_Simulator.dir/src/vector.cpp.obj: CMakeFiles/Fluid_Simulator.dir/flags.make
+CMakeFiles/Fluid_Simulator.dir/src/vector.cpp.obj: CMakeFiles/Fluid_Simulator.dir/includes_CXX.rsp
 CMakeFiles/Fluid_Simulator.dir/src/vector.cpp.obj: D:/mayank/Simulators/src/vector.cpp
 CMakeFiles/Fluid_Simulator.dir/src/vector.cpp.obj: CMakeFiles/Fluid_Simulator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\mayank\Simulators\out\build\cpp_compiler\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Fluid_Simulator.dir/src/vector.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\mayank\Simulators\out\build\cpp_compiler\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Fluid_Simulator.dir/src/vector.cpp.obj"
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Fluid_Simulator.dir/src/vector.cpp.obj -MF CMakeFiles\Fluid_Simulator.dir\src\vector.cpp.obj.d -o CMakeFiles\Fluid_Simulator.dir\src\vector.cpp.obj -c D:\mayank\Simulators\src\vector.cpp
 
 CMakeFiles/Fluid_Simulator.dir/src/vector.cpp.i: cmake_force
@@ -129,6 +148,7 @@ CMakeFiles/Fluid_Simulator.dir/src/vector.cpp.s: cmake_force
 
 # Object files for target Fluid_Simulator
 Fluid_Simulator_OBJECTS = \
+"CMakeFiles/Fluid_Simulator.dir/src/window_sfml.cpp.obj" \
 "CMakeFiles/Fluid_Simulator.dir/src/frame.cpp.obj" \
 "CMakeFiles/Fluid_Simulator.dir/src/main.cpp.obj" \
 "CMakeFiles/Fluid_Simulator.dir/src/particle.cpp.obj" \
@@ -137,15 +157,20 @@ Fluid_Simulator_OBJECTS = \
 # External object files for target Fluid_Simulator
 Fluid_Simulator_EXTERNAL_OBJECTS =
 
+Fluid_Simulator.exe: CMakeFiles/Fluid_Simulator.dir/src/window_sfml.cpp.obj
 Fluid_Simulator.exe: CMakeFiles/Fluid_Simulator.dir/src/frame.cpp.obj
 Fluid_Simulator.exe: CMakeFiles/Fluid_Simulator.dir/src/main.cpp.obj
 Fluid_Simulator.exe: CMakeFiles/Fluid_Simulator.dir/src/particle.cpp.obj
 Fluid_Simulator.exe: CMakeFiles/Fluid_Simulator.dir/src/vector.cpp.obj
 Fluid_Simulator.exe: CMakeFiles/Fluid_Simulator.dir/build.make
+Fluid_Simulator.exe: _deps/sfml-build/lib/libsfml-graphics-s-d.a
+Fluid_Simulator.exe: _deps/sfml-build/lib/libsfml-window-s-d.a
+Fluid_Simulator.exe: _deps/sfml-build/lib/libsfml-system-s-d.a
+Fluid_Simulator.exe: _deps/sfml-build/lib/libfreetyped.a
 Fluid_Simulator.exe: CMakeFiles/Fluid_Simulator.dir/linkLibs.rsp
 Fluid_Simulator.exe: CMakeFiles/Fluid_Simulator.dir/objects1.rsp
 Fluid_Simulator.exe: CMakeFiles/Fluid_Simulator.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\mayank\Simulators\out\build\cpp_compiler\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable Fluid_Simulator.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\mayank\Simulators\out\build\cpp_compiler\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable Fluid_Simulator.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Fluid_Simulator.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

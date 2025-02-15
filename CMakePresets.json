@@ -13,6 +13,19 @@
                 "CMAKE_CXX_COMPILER": "C:/msys64/mingw64/bin/g++.exe",
                 "CMAKE_BUILD_TYPE": "Debug"
             }
+        },
+        {
+            "name": "sfml_compiler_64bit",
+            "displayName": "sfml_compiler_64bit",
+            "description": "Sets Ninja generator, build and install directory",
+            "generator": "MinGW Makefiles",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
+                "CMAKE_C_COMPILER": "D:\\mayank\\download 5\\sfml_compiler_64bit\\mingw32\\bin\\gcc.exe",
+                "CMAKE_CXX_COMPILER": "D:\\mayank\\download 5\\sfml_compiler_64bit\\mingw32\\bin\\g++.exe"
+            }
         }
     ]
 }
