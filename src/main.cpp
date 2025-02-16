@@ -1,7 +1,7 @@
 #include "frame.h"
 #include <iostream>
 
-int main(){
+int temp(){
     Frame frame;
     frame.dt = 1.00/60.00;
     frame.number_of_particles = 1;

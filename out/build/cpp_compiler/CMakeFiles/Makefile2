@@ -458,8 +458,8 @@ _deps/vorbis-build/lib/clean: _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/c
 # Target rules for target CMakeFiles/Fluid_Simulator.dir
 
 # All Build rule for target.
-CMakeFiles/Fluid_Simulator.dir/all: _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/all
 CMakeFiles/Fluid_Simulator.dir/all: _deps/sfml-build/src/SFML/Window/CMakeFiles/sfml-window.dir/all
+CMakeFiles/Fluid_Simulator.dir/all: _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/all
 CMakeFiles/Fluid_Simulator.dir/all: _deps/sfml-build/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all
 CMakeFiles/Fluid_Simulator.dir/all: _deps/freetype-build/CMakeFiles/freetype.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Fluid_Simulator.dir\build.make CMakeFiles/Fluid_Simulator.dir/depend
@@ -1517,8 +1517,8 @@ _deps/sfml-build/src/SFML/Network/CMakeFiles/sfml-network.dir/clean:
 # Target rules for target _deps/sfml-build/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir
 
 # All Build rule for target.
-_deps/sfml-build/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all: _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/all
 _deps/sfml-build/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all: _deps/sfml-build/src/SFML/Window/CMakeFiles/sfml-window.dir/all
+_deps/sfml-build/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all: _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/all
 _deps/sfml-build/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all: _deps/freetype-build/CMakeFiles/freetype.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\sfml-build\src\SFML\Graphics\CMakeFiles\sfml-graphics.dir\build.make _deps/sfml-build/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\sfml-build\src\SFML\Graphics\CMakeFiles\sfml-graphics.dir\build.make _deps/sfml-build/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/build
