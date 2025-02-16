@@ -1,0 +1,14 @@
+# Target labels
+ vorbis-populate
+# Source files and their labels
+D:/mayank/Simulators/out/build/cpp_compiler/_deps/vorbis-subbuild/CMakeFiles/vorbis-populate
+D:/mayank/Simulators/out/build/cpp_compiler/_deps/vorbis-subbuild/CMakeFiles/vorbis-populate.rule
+D:/mayank/Simulators/out/build/cpp_compiler/_deps/vorbis-subbuild/CMakeFiles/vorbis-populate-complete.rule
+D:/mayank/Simulators/out/build/cpp_compiler/_deps/vorbis-subbuild/vorbis-populate-prefix/src/vorbis-populate-stamp/vorbis-populate-build.rule
+D:/mayank/Simulators/out/build/cpp_compiler/_deps/vorbis-subbuild/vorbis-populate-prefix/src/vorbis-populate-stamp/vorbis-populate-configure.rule
+D:/mayank/Simulators/out/build/cpp_compiler/_deps/vorbis-subbuild/vorbis-populate-prefix/src/vorbis-populate-stamp/vorbis-populate-download.rule
+D:/mayank/Simulators/out/build/cpp_compiler/_deps/vorbis-subbuild/vorbis-populate-prefix/src/vorbis-populate-stamp/vorbis-populate-install.rule
+D:/mayank/Simulators/out/build/cpp_compiler/_deps/vorbis-subbuild/vorbis-populate-prefix/src/vorbis-populate-stamp/vorbis-populate-mkdir.rule
+D:/mayank/Simulators/out/build/cpp_compiler/_deps/vorbis-subbuild/vorbis-populate-prefix/src/vorbis-populate-stamp/vorbis-populate-patch.rule
+D:/mayank/Simulators/out/build/cpp_compiler/_deps/vorbis-subbuild/vorbis-populate-prefix/src/vorbis-populate-stamp/vorbis-populate-test.rule
+D:/mayank/Simulators/out/build/cpp_compiler/_deps/vorbis-subbuild/vorbis-populate-prefix/src/vorbis-populate-stamp/vorbis-populate-update.rule

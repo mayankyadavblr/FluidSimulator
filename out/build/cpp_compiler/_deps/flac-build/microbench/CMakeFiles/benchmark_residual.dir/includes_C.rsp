@@ -1,0 +1,1 @@
+-I"D:/mayank/Simulators/out/build/cpp_compiler/_deps/flac-build" -I"D:/mayank/Simulators/out/build/cpp_compiler/_deps/flac-src/src/libFLAC/include" -isystem "D:/mayank/Simulators/out/build/cpp_compiler/_deps/flac-src/include" -isystem "D:/mayank/Simulators/out/build/cpp_compiler/_deps/ogg-src/include" -isystem "D:/mayank/Simulators/out/build/cpp_compiler/_deps/ogg-build/include"
