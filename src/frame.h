@@ -9,11 +9,13 @@ struct Frame {
     int number_of_particles;
     std::vector<Particle> all_particles;
 
-    Vector tl, tr, bl, br; 
+    Vector tr, bl; 
 };
 
 void update_particle(Particle& p, double dt);
 
 void update_frame(Frame& frame);
+
+void check_boundaries(Frame& frame);
 
 #endif 

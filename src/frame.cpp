@@ -40,6 +40,9 @@ void update_frame(Frame& frame){
                 detect_collision(frame.all_particles[i], frame.all_particles[j]);
             }
         }
+
+        check_boundaries(frame);
+        
         for (size_t i = 0; i < frame.all_particles.size(); ++i){
             update_particle(frame.all_particles[i], frame.dt);
         }
@@ -49,4 +52,26 @@ void update_frame(Frame& frame){
     auto microseconds = std::chrono::duration_cast<std::chrono::microseconds>(finish-start);
     std::cout << microseconds.count() << "us\n";
 
+}
+
+void check_boundaries(Frame& frame){
+    for (size_t i = 0; i < frame.number_of_particles; ++i) {
+        Particle& p = frame.all_particles[i];
+        if (p.position.x > frame.tr.x - p.radius) {
+            p.position.x = frame.tr.x - p.radius;
+            p.velocity.x = - p.velocity.x;
+        }
+        if (p.position.x < frame.bl.x + p.radius){
+            p.position.x = frame.bl.x + p.radius;
+            p.velocity.x = - p.velocity.x;
+        }
+        if (-p.position.y < frame.tr.y + p.radius) {
+            p.position.y = frame.tr.y + p.radius;
+            p.velocity.y = - p.velocity.y;
+        }
+        if (-p.position.y > frame.bl.y - p.radius){
+            p.position.y = frame.tr.y - p.radius;
+            p.velocity.y = - p.velocity.y;
+        }
+    }
 }

@@ -1,22 +1,29 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include "frame.h"
 
 int main()
 {
-    auto window = sf::RenderWindow(sf::VideoMode({1920u, 1080u}), "CMake SFML Project");
+    auto window = sf::RenderWindow(sf::VideoMode({500u, 500u}), "CMake SFML Project");
     window.setFramerateLimit(144);
+    double x = window.getSize().x;
+    double y = window.getSize().y;
+
+    std::cout<<x<<", "<<y<<std::endl;
 
     
     Frame frame;
     frame.dt = 1.00/60.00;
     frame.number_of_particles = 1;
+    frame.tr = {x, 0};
+    frame.bl = {0, y};
     
     Particle p1;
-    p1.position = Vector{0, 5};
-    p1.velocity = Vector{120, 0};
+    p1.position = Vector{50, -15};
+    p1.velocity = Vector{20, 0};
     
     Particle p2;
-    p2.position = Vector{290, 5};
+    p2.position = Vector{180, -15};
     p2.velocity = Vector{-15, 0};
     
     frame.all_particles.push_back(p1);
@@ -44,6 +51,9 @@ int main()
                 detect_collision(frame.all_particles[i], frame.all_particles[j]);
             }
         }
+
+        check_boundaries(frame);
+
         for (size_t i = 0; i < frame.all_particles.size(); ++i){
             update_particle(frame.all_particles[i], frame.dt);
         }
