@@ -1,7 +1,8 @@
 #include "frame.h"
 #include <iostream>
+#include <SFML/Graphics.hpp>
 
-int main(){
+int temp(){
     Frame frame;
     frame.dt = 1.00/60.00;
     frame.number_of_particles = 1;

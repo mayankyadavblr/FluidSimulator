@@ -8,7 +8,7 @@ struct Particle {
     Vector velocity = Vector{0, 0};
     Vector acceleration = Vector{0, -9.81};
 
-    double radius = 1;
+    double radius = 10;
     double mass = 1;
 };
 

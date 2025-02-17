@@ -9,7 +9,7 @@ struct Frame {
     int number_of_particles;
     std::vector<Particle> all_particles;
 
-    //TO DO: make an initializer for ease of testing  
+    Vector tl, tr, bl, br; 
 };
 
 void update_particle(Particle& p, double dt);
