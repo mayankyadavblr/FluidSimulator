@@ -57,20 +57,27 @@ void update_frame(Frame& frame){
 void check_boundaries(Frame& frame){
     for (size_t i = 0; i < frame.number_of_particles; ++i) {
         Particle& p = frame.all_particles[i];
-        if (p.position.x > frame.tr.x - p.radius) {
-            p.position.x = frame.tr.x - p.radius;
+        //RIGHT
+        if (p.position.x > frame.tr.x - 2*p.radius) {
+            p.position.x = frame.tr.x - 2*p.radius;
             p.velocity.x = - p.velocity.x;
         }
-        if (p.position.x < frame.bl.x + p.radius){
-            p.position.x = frame.bl.x + p.radius;
+        //LEFT
+        if (p.position.x < frame.bl.x){
+            p.position.x = frame.bl.x;
             p.velocity.x = - p.velocity.x;
         }
-        if (-p.position.y < frame.tr.y + p.radius) {
-            p.position.y = frame.tr.y + p.radius;
+        //TOP
+        if (-p.position.y < frame.tr.y ) {
+            // std::cout<<"top collision"<<std::endl;
+            p.position.y = frame.tr.y;
+            p.position.y = -p.position.y;
             p.velocity.y = - p.velocity.y;
         }
-        if (-p.position.y > frame.bl.y - p.radius){
-            p.position.y = frame.tr.y - p.radius;
+        //BOTTOM
+        if (-p.position.y > frame.bl.y - 2*p.radius){
+            p.position.y = frame.bl.y - 2*p.radius;
+            p.position.y = -p.position.y;
             p.velocity.y = - p.velocity.y;
         }
     }
