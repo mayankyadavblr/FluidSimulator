@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/System/Time.hpp>
 #include <iostream>
 #include <random>
 #include <cstdlib>
@@ -6,9 +7,9 @@
 
 int main()
 {
-    int number_of_particles = 1000;
+    int number_of_particles = 250;
 
-    auto window = sf::RenderWindow(sf::VideoMode({1000u, 1000u}), "CMake SFML Project");
+    auto window = sf::RenderWindow(sf::VideoMode({1000, 1000}), "CMake SFML Project");
     window.setFramerateLimit(144);
     double x = window.getSize().x;
     double y = window.getSize().y;
@@ -23,8 +24,8 @@ int main()
     
     for (int i=0; i < number_of_particles; ++i) {
         Particle p;
-        double x = rand()%800;
-        double y = rand()%800;
+        double x = 1000 - rand()%window.getSize().x;
+        double y = 1000 - rand()%window.getSize().y;
         p.position = Vector{x, -y};
         x = rand()%20;
         y = rand()%20;
@@ -41,41 +42,15 @@ int main()
         // display_details(p);
 
     }
-    // for(sf::CircleShape circle: all_circles) {
-    //     std::cout<<circle.getPosition().x<<", "<<circle.getPosition().y<<std::endl;
-    // }
-    /*
-    Particle p1;
-    p1.position = Vector{50, -15};
-    p1.velocity = Vector{20, 0};
+    sf::Font font("D:\\mayank\\Simulators\\Tinos-Regular.ttf"); 
+    sf::Text text(font); 
+    text.setString("Hello world");
+    text.setCharacterSize(24); // in pixels, not points!
+    text.setFillColor(sf::Color::Red);
     
-    Particle p2;
-    p2.position = Vector{180, -15};
-    p2.velocity = Vector{-15, 0};
-
-    Particle p3;
-    p3.position = Vector{250, -250};
-    p3.velocity = Vector{100, 100};
-    
-    frame.all_particles.push_back(p1);
-    frame.all_particles.push_back(p2);
-    frame.all_particles.push_back(p3);
-    
-    sf::CircleShape circle1(p1.radius); 
-    circle1.setFillColor(sf::Color::White);
-    circle1.setPosition({p1.position.x, p1.position.y}); 
-    
-    sf::CircleShape circle2(p2.radius); 
-    circle2.setFillColor(sf::Color::White);
-    circle2.setPosition({p2.position.x, p2.position.y}); 
-
-    sf::CircleShape circle3(p3.radius); 
-    circle3.setFillColor(sf::Color::White);
-    circle3.setPosition({p3.position.x, p3.position.y});
-    */
-    // update_frame(frame);
-
-    
+    int frame_count = 0;
+    sf::Clock clock;
+    float lastTime = 0;
     while (window.isOpen()){
         while (const std::optional event = window.pollEvent()){
             if (event->is<sf::Event::Closed>())
@@ -96,19 +71,20 @@ int main()
         }
 
         window.clear(sf::Color::Black); 
-        /*
-        circle1.setPosition({frame.all_particles[0].position.x, -frame.all_particles[0].position.y});
-        circle2.setPosition({frame.all_particles[1].position.x, -frame.all_particles[1].position.y});
-        circle3.setPosition({frame.all_particles[2].position.x, -frame.all_particles[2].position.y});
-        window.draw(circle1);
-        window.draw(circle2);
-        window.draw(circle3);
-        */
         for (int i = 0; i < number_of_particles; ++i) {
             all_circles[i].setPosition({frame.all_particles[i].position.x, -frame.all_particles[i].position.y});
             window.draw(all_circles[i]);
         }
+        sf::Time ElapsedTime = clock.restart();
+        int time = 1/ElapsedTime.asSeconds();
+        if (frame_count == 50) {
+            text.setString(std::to_string(time));
+            frame_count = 0;
+        }
+        frame_count++;
+        window.draw(text);
         window.display();
+        
     }
     return 0;
 }
