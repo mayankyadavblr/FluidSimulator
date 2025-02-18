@@ -1,11 +1,11 @@
-Benchmarks:
+# Benchmarks:
 
-Frame size: 1000px X 1000px
+## Frame size: 1000px X 1000px
 
-Number of particles and FPS:
+### Number of particles and FPS:
 
-250/170
+* 250/170
 
-500/70
+* 500/70
 
-1000/25
+* 1000/25
