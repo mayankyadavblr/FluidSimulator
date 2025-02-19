@@ -17,7 +17,6 @@ void update_particle(Particle& p, double dt){
 
     p.position = p.position + p.velocity * dt + p.acceleration * 0.5 * pow(dt, 2);
     p.velocity = p.velocity + p.acceleration * dt;
-    // std::cout << "particle position: " << p.position.x <<","<< p.position.y<<std::endl;
 
     //p.acceleration = p.acceleration; NO CHANGE NEEDED
 
@@ -35,15 +34,15 @@ void update_frame(Frame& frame){
     auto start = std::chrono::high_resolution_clock::now();
     
     while (frame_count < 120){
-        for (size_t i = 0; i < frame.all_particles.size() - 1; ++i) {
-            for (size_t j = i + 1; j < frame.all_particles.size(); ++j) {
+        for (size_t i = 0; i < frame.number_of_particles - 1; ++i) {
+            for (size_t j = i + 1; j < frame.number_of_particles; ++j) {
                 detect_collision(frame.all_particles[i], frame.all_particles[j]);
             }
         }
 
         check_boundaries(frame);
         
-        for (size_t i = 0; i < frame.all_particles.size(); ++i){
+        for (size_t i = 0; i < frame.number_of_particles; ++i){
             update_particle(frame.all_particles[i], frame.dt);
         }
         frame_count++;

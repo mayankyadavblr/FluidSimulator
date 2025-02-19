@@ -18,8 +18,6 @@ void resolve_collision(Particle& p1, Particle& p2, double e = 1);
 
 void resolve_intersection(Particle& p1, Particle& p2);
 
-void resolve_collision_wall(Particle& p, int flag) ;
-
 void display_details(Particle p);
 
 #endif 

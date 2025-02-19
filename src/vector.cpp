@@ -9,10 +9,6 @@ Vector operator -(Vector lhs, Vector rhs) {
     return Vector{lhs.x - rhs.x, lhs.y - rhs.y};
 }
 
-Vector operator *(Vector lhs, Vector rhs) {
-    return Vector{lhs.x * rhs.x, lhs.y * rhs.y};
-}
-
 Vector operator *(Vector lhs, double rhs) {
     return Vector{lhs.x * rhs, lhs.y * rhs};
 }

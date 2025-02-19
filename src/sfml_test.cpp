@@ -45,7 +45,7 @@ int main()
     sf::Font font("D:\\mayank\\Simulators\\Tinos-Regular.ttf"); 
     sf::Text text(font); 
     text.setString("Hello world");
-    text.setCharacterSize(24); // in pixels, not points!
+    text.setCharacterSize(24); 
     text.setFillColor(sf::Color::Red);
     
     int frame_count = 0;

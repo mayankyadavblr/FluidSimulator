@@ -35,8 +35,6 @@ void resolve_intersection(Particle& p1, Particle& p2) {
     1. given that particles are intersecting
     no checks in place to verify above condition
         
-    2. Cannot be sure that the positions
-    are modified in place. Testing required
     */
     Vector line_of_contact = p1.position - p2.position;
     line_of_contact = line_of_contact / magnitude(line_of_contact);
@@ -59,8 +57,6 @@ void resolve_collision(Particle& p1, Particle& p2, double e) {
     1. given that the particles are tangential
     No checks in place to check tangentiality
 
-    2. Cannot be sure that the positions
-    are modified in place. Testing required
     */
 
     Vector line_of_contact = p1.position - p2.position;
@@ -72,14 +68,6 @@ void resolve_collision(Particle& p1, Particle& p2, double e) {
     
 }
 
-void resolve_collision_wall(Particle& p, int flag) {
-    switch(flag){
-        case 0:
-            p.velocity.x = -p.velocity.x;
-        case 1:
-            p.velocity.y = -p.velocity.y;
-    }
-}
 void display_details(Particle p) {
     std::cout << "Position: "<< p.position.x << ", " << p.position.y<<std::endl;
     std::cout << "Velocity: "<< p.velocity.x << ", " << p.velocity.y<<std::endl;
