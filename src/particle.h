@@ -14,7 +14,7 @@ struct Particle {
 
 void detect_collision(Particle& p1, Particle& p2);
 
-void resolve_collision(Particle& p1, Particle& p2, double e = 1);
+void resolve_collision(Particle& p1, Particle& p2, double e = 0.95);
 
 void resolve_intersection(Particle& p1, Particle& p2);
 

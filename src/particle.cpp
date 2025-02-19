@@ -63,9 +63,9 @@ void resolve_collision(Particle& p1, Particle& p2, double e) {
     Vector speed_along_loc_p1 = projection(p1.velocity, line_of_contact);
     Vector speed_along_loc_p2 = projection(p2.velocity, line_of_contact);
     
-    p1.velocity = p1.velocity - speed_along_loc_p1 + speed_along_loc_p2;
-    p2.velocity = p2.velocity - speed_along_loc_p2 + speed_along_loc_p1;
-    
+    p1.velocity = p1.velocity - speed_along_loc_p1 + speed_along_loc_p1 * (p1.mass - e*p2.mass)/(p1.mass + p2.mass) + speed_along_loc_p2 * ((1+e)*p2.mass)/(p1.mass + p2.mass);
+    p2.velocity = p2.velocity - speed_along_loc_p2 + speed_along_loc_p2 * (p2.mass - e*p1.mass)/(p1.mass + p2.mass) + speed_along_loc_p1 * ((1+e)*p1.mass)/(p1.mass + p2.mass);
+ 
 }
 
 void display_details(Particle p) {

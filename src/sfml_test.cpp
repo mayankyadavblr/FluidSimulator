@@ -24,17 +24,21 @@ int main()
     
     for (int i=0; i < number_of_particles; ++i) {
         Particle p;
-        double x = 1000 - rand()%window.getSize().x;
-        double y = 1000 - rand()%window.getSize().y;
+        double x = rand()%window.getSize().x;
+        double y = rand()%window.getSize().y;
         p.position = Vector{x, -y};
+        p.radius = 10;
         x = rand()%20;
         y = rand()%20;
         p.velocity = Vector{x, y};
+        double mass = rand()%5 + 10;
+        p.mass = mass;
 
         frame.all_particles.push_back(p);
 
         sf::CircleShape circle(p.radius);
-        circle.setFillColor(sf::Color::White);
+        // circle.setFillColor(sf::Color::White);
+        circle.setFillColor({255, 255, 255, 255/(mass-9)});
         circle.setPosition({p.position.x, p.position.y});
         
         all_circles.push_back(circle);
@@ -42,6 +46,7 @@ int main()
         // display_details(p);
 
     }
+
     sf::Font font("D:\\mayank\\Simulators\\Tinos-Regular.ttf"); 
     sf::Text text(font); 
     text.setString("Hello world");
@@ -51,6 +56,7 @@ int main()
     int frame_count = 0;
     sf::Clock clock;
     float lastTime = 0;
+    
     while (window.isOpen()){
         while (const std::optional event = window.pollEvent()){
             if (event->is<sf::Event::Closed>())
@@ -71,7 +77,7 @@ int main()
         }
 
         window.clear(sf::Color::Black); 
-        for (int i = 0; i < number_of_particles; ++i) {
+         for (int i = 0; i < frame.number_of_particles; ++i) {
             all_circles[i].setPosition({frame.all_particles[i].position.x, -frame.all_particles[i].position.y});
             window.draw(all_circles[i]);
         }
