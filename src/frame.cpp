@@ -22,6 +22,21 @@ void update_particle(Particle& p, double dt){
 
 }
 
+Particle inverse_update_particle(Particle p, double dt){
+    /*
+    Backtracks a particle's position
+    velocity and acceleration to previous timestep
+    NOTE: acceleration is constant - gravity
+
+    Formulae:
+    x0 = x - ut - 1/2 at^2
+    u = v - at
+    */
+    p.position = p.position - p.velocity * dt - p.acceleration * 0.5 * pow(dt, 2);
+    p.velocity = p.velocity - p.acceleration * dt;
+    return p;
+}
+
 void update_frame(Frame& frame){
     /*
     Update all the particles in a frame
