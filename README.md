@@ -12,14 +12,15 @@
 
 ------------
 # Change log / current status:
-
+Feb-18th
 * Implemented coefficient of restitution
 * Implemented mass aware collision
 * Shading particles based on mass
+Feb-19th
+* Variable particle radii
+* Tested buoyancy (success)
 ------------
 # Future work:
 
-* Account for variable particle radii
-* Test buoyancy
 * Implement buffer frame for accurate collisions
 
