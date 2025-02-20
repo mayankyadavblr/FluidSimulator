@@ -7,9 +7,9 @@
 
 int main()
 {
-    int number_of_particles = 250;
+    int number_of_particles = 750;
 
-    auto window = sf::RenderWindow(sf::VideoMode({1000, 1000}), "CMake SFML Project");
+    auto window = sf::RenderWindow(sf::VideoMode({500, 500}), "CMake SFML Project");
     window.setFramerateLimit(144);
     double x = window.getSize().x;
     double y = window.getSize().y;
@@ -28,17 +28,19 @@ int main()
         double y = rand()%window.getSize().y;
         p.position = Vector{x, -y};
         p.radius = 10;
-        x = rand()%20;
-        y = rand()%20;
+        x = rand()%100;
+        y = rand()%100;
         p.velocity = Vector{x, y};
         double mass = rand()%5 + 10;
-        p.mass = mass;
+        p.mass = 2;
+        double radius = rand()%7+1;
+        p.radius = 2;
 
         frame.all_particles.push_back(p);
 
         sf::CircleShape circle(p.radius);
-        // circle.setFillColor(sf::Color::White);
-        circle.setFillColor({255, 255, 255, 255/(mass-9)});
+        circle.setFillColor(sf::Color::White);
+        // circle.setFillColor({255, 255, 255, 255/(mass-9)});
         circle.setPosition({p.position.x, p.position.y});
         
         all_circles.push_back(circle);
@@ -46,6 +48,17 @@ int main()
         // display_details(p);
 
     }
+
+    Particle test;
+    test.position = Vector{250, 250};
+    test.radius = 8;
+    test.mass = 32;
+    frame.all_particles.push_back(test);
+    frame.number_of_particles += 1;
+    sf::CircleShape circle_test(test.radius);
+    circle_test.setFillColor(sf::Color::Red);
+    circle_test.setPosition({test.position.x, test.position.y});
+    all_circles.push_back(circle_test);
 
     sf::Font font("D:\\mayank\\Simulators\\Tinos-Regular.ttf"); 
     sf::Text text(font); 

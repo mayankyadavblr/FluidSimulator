@@ -13,11 +13,11 @@ void detect_collision(Particle& p1, Particle& p2) {
     (unlikely) then collision is resolved directly
     */
     double distance_btw_centers = distance(p1.position, p2.position);
-    if (distance_btw_centers < 2*p1.radius) {
+    if (distance_btw_centers < p1.radius + p2.radius) {
         resolve_intersection(p1, p2);
         resolve_collision(p1, p2);
     }
-    else if (distance_btw_centers == 2 * p1.radius){
+    else if (distance_btw_centers == p1.radius + p2.radius){
         resolve_collision(p1, p2);
     }
     
@@ -39,7 +39,13 @@ void resolve_intersection(Particle& p1, Particle& p2) {
     Vector line_of_contact = p1.position - p2.position;
     line_of_contact = line_of_contact / magnitude(line_of_contact);
     
-    double distance_intersected = 2 * p1.radius - distance(p1.position, p2.position);
+    double distance_intersected = p1.radius + p2.radius - distance(p1.position, p2.position);
+    // if (distance_intersected > 1){
+    //     std::cout<<"big intersection"<<distance_intersected<<std::endl;
+    // }
+    // else {
+    //     std::cout<<"small intersection"<<distance_intersected<<std::endl;
+    // }
 
     p1.position = p1.position + line_of_contact * (distance_intersected / 2.00);
     p2.position = p2.position - line_of_contact * (distance_intersected / 2.00);
