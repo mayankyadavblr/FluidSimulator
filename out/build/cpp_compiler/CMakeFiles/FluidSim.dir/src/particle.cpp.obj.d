@@ -148,4 +148,10 @@ CMakeFiles/FluidSim.dir/src/particle.cpp.obj: \
  C:/msys64/mingw64/include/c++/12.2.0/bits/basic_ios.tcc \
  C:/msys64/mingw64/include/c++/12.2.0/bits/ostream.tcc \
  C:/msys64/mingw64/include/c++/12.2.0/istream \
- C:/msys64/mingw64/include/c++/12.2.0/bits/istream.tcc
+ C:/msys64/mingw64/include/c++/12.2.0/bits/istream.tcc \
+ D:\mayank\Simulators\src\frame.h \
+ C:/msys64/mingw64/include/c++/12.2.0/vector \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/stl_uninitialized.h \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/stl_vector.h \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/stl_bvector.h \
+ C:/msys64/mingw64/include/c++/12.2.0/bits/vector.tcc

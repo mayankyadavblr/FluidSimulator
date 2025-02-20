@@ -16,11 +16,14 @@ Feb-18th
 * Implemented coefficient of restitution
 * Implemented mass aware collision
 * Shading particles based on mass
+
 Feb-19th
 * Variable particle radii
 * Tested buoyancy (success)
+* Implemented linear interpolation for collisions
 ------------
 # Future work:
 
-* Implement buffer frame for accurate collisions
+* Test out linear interpolation with previous model
+* Start looking at n^2 collision check optimization
 
