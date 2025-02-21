@@ -7,10 +7,10 @@
 
 int main()
 {
-    int number_of_particles = 30;
+    int number_of_particles = 5;
 
-    auto window = sf::RenderWindow(sf::VideoMode({500, 500}), "Fluid Simulator");
-    window.setFramerateLimit(144);
+    auto window = sf::RenderWindow(sf::VideoMode({200, 200}), "Fluid Simulator");
+    window.setFramerateLimit(60);
     double x = window.getSize().x;
     double y = window.getSize().y;
     
@@ -27,21 +27,22 @@ int main()
         double x = rand()%window.getSize().x;
         double y = rand()%window.getSize().y;
         p.position = Vector{x, -y};
-        p.radius = 10;
         x = rand()%100;
         y = rand()%100;
         p.velocity = Vector{x, y};
         double mass = rand()%5 + 10;
-        p.mass = 2;
-        double radius = rand()%7+1;
-        p.radius = 10;
+        // p.mass = 2;
+        p.mass = mass;
+        double radius = rand()%10+1;
+        p.radius = radius;
+        // p.radius = 10;
 
         frame.all_particles.push_back(p);
 
         sf::CircleShape circle(p.radius);
-        circle.setFillColor(sf::Color::White);
-        // circle.setFillColor({255, 255, 255, 255/(mass-9)});
-        circle.setPosition({p.position.x, p.position.y});
+        // circle.setFillColor(sf::Color::White);
+        circle.setFillColor({255, 255, 255, 255/(mass-9)});
+        circle.setPosition({p.position.x-p.radius, p.position.y-p.radius});
         
         all_circles.push_back(circle);
 
@@ -77,21 +78,21 @@ int main()
                 window.close();
             }
         }
-        for (size_t i = 0; i < frame.all_particles.size() - 1; ++i) {
-            for (size_t j = i + 1; j < frame.all_particles.size(); ++j) {
+        for (size_t i = 0; i < frame.number_of_particles - 1; ++i) {
+            for (size_t j = i + 1; j < frame.number_of_particles; ++j) {
                 detect_collision(frame.all_particles[i], frame.all_particles[j], frame.dt);
             }
         }
 
         check_boundaries(frame);
 
-        for (size_t i = 0; i < frame.all_particles.size(); ++i){
+        for (size_t i = 0; i < frame.number_of_particles; ++i){
             update_particle(frame.all_particles[i], frame.dt);
         }
 
         window.clear(sf::Color::Black); 
          for (int i = 0; i < frame.number_of_particles; ++i) {
-            all_circles[i].setPosition({frame.all_particles[i].position.x, -frame.all_particles[i].position.y});
+            all_circles[i].setPosition({frame.all_particles[i].position.x-frame.all_particles[i].radius, -frame.all_particles[i].position.y-frame.all_particles[i].radius});
             window.draw(all_circles[i]);
         }
         sf::Time ElapsedTime = clock.restart();

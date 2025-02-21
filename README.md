@@ -21,9 +21,12 @@ Feb-19th
 * Variable particle radii
 * Tested buoyancy (success)
 * Implemented linear interpolation for collisions
+
+Feb-20th
+* Fixed and tested linear interpolation
+* Refactored code avoid redefinitions of dt
 ------------
 # Future work:
 
-* Test out linear interpolation with previous model
 * Start looking at n^2 collision check optimization
 
