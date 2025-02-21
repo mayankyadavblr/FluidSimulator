@@ -12,13 +12,13 @@ struct Particle {
     double mass = 1;
 };
 
-void detect_collision(Particle& p1, Particle& p2);
+void detect_collision(Particle& p1, Particle& p2, double dt);
 
 void resolve_collision(Particle& p1, Particle& p2, double e = 1);
 
-double resolve_intersection(Particle& p1, Particle& p2);
+double resolve_intersection(Particle& p1, Particle& p2, double dt);
 
-double linear_interpolate_collision(Particle p1, Particle p2, double N=10);
+double linear_interpolate_collision(Particle p1, Particle p2, double dt, double N=10);
 
 void display_details(Particle p);
 

@@ -51,7 +51,7 @@ void update_frame(Frame& frame){
     while (frame_count < 120){
         for (size_t i = 0; i < frame.number_of_particles - 1; ++i) {
             for (size_t j = i + 1; j < frame.number_of_particles; ++j) {
-                detect_collision(frame.all_particles[i], frame.all_particles[j]);
+                detect_collision(frame.all_particles[i], frame.all_particles[j], frame.dt);
             }
         }
 

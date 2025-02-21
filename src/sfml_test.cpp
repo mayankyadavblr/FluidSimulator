@@ -7,9 +7,9 @@
 
 int main()
 {
-    int number_of_particles = 2;
+    int number_of_particles = 30;
 
-    auto window = sf::RenderWindow(sf::VideoMode({100, 100}), "Fluid Simulator");
+    auto window = sf::RenderWindow(sf::VideoMode({500, 500}), "Fluid Simulator");
     window.setFramerateLimit(144);
     double x = window.getSize().x;
     double y = window.getSize().y;
@@ -79,7 +79,7 @@ int main()
         }
         for (size_t i = 0; i < frame.all_particles.size() - 1; ++i) {
             for (size_t j = i + 1; j < frame.all_particles.size(); ++j) {
-                detect_collision(frame.all_particles[i], frame.all_particles[j]);
+                detect_collision(frame.all_particles[i], frame.all_particles[j], frame.dt);
             }
         }
 
