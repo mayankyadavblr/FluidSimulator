@@ -47,25 +47,32 @@ double resolve_intersection(Particle& p1, Particle& p2) {
     1. refactor to include dt
     2. refactor to handle N
         
-    // if (distance_intersected > 1){
-    //     std::cout<<"big intersection"<<distance_intersected<<std::endl;
-    // }
-    // else {
-    //     std::cout<<"small intersection"<<distance_intersected<<std::endl;
-    // }
     */
+    display_details(p1);display_details(p2);
+    std::cout<<"distance in current timestep: "<<distance(p1.position, p2.position)<<std::endl;
+    std::cout<<"-------------"<<std::endl;
+
+    double collision_time = 0.0;
     double dt = 1.00/60.00; // Refactor code to not have to do this
     Particle p1_prev = inverse_update_particle(p1, dt);
     Particle p2_prev = inverse_update_particle(p2, dt);
 
-    double collision_time = linear_interpolate_collision(p1_prev, p2_prev, 10); // Refactor to not have to hard code N
-    p1.position = p1.position + p1.velocity * collision_time;
-    p2.position = p2.position + p2.velocity * collision_time;
-
+    display_details(p1_prev);display_details(p2_prev);
+    std::cout<<"distance in previous timestep: "<<distance(p1_prev.position, p2_prev.position)<<std::endl;
+    std::cout<<"-------------"<<std::endl;
+    
+    collision_time = linear_interpolate_collision(p1_prev, p2_prev, 10); // Refactor to not have to hard code N
+    p1.position = p1_prev.position + p1_prev.velocity * collision_time;
+    p2.position = p2_prev.position + p2_prev.velocity * collision_time;
+    display_details(p1);display_details(p2);
+    std::cout<<"distance in current timestep after interpolation: "<<distance(p1.position, p2.position)<<std::endl;
+    std::cout<<"-------------"<<std::endl;
+    
     Vector line_of_contact = p1.position - p2.position;
     line_of_contact = line_of_contact / magnitude(line_of_contact);
     
     double distance_intersected = p1.radius + p2.radius - distance(p1.position, p2.position);
+    std::cout<<"distance intersected: "<<distance_intersected<<", "<<collision_time<<std::endl;
 
     p1.position = p1.position + line_of_contact * (distance_intersected / 2.00);
     p2.position = p2.position - line_of_contact * (distance_intersected / 2.00);
@@ -89,12 +96,15 @@ double linear_interpolate_collision(Particle p1, Particle p2, double N){
     
     double dt = 1.00/60.00; // Refactor code to not have to do this
     double new_dt = dt/N;
-    for (int i=0; i < N; i++){
+    for (int i=1; i < N; i++){
         p1.position = p1.position + p1.velocity * new_dt;
         p2.position = p2.position + p2.velocity * new_dt;
 
         if (distance(p1.position, p2.position) < p1.radius + p2.radius){
-            return new_dt;
+            display_details(p1);display_details(p2);
+            std::cout<<distance(p1.position, p2.position)<<", "<<i<<std::endl;
+            std::cout<<"-------------"<<std::endl;
+            return i*new_dt;
         }
 
     }

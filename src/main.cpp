@@ -8,15 +8,16 @@ int temp(){
     frame.number_of_particles = 1;
     
     Particle p1;
-    p1.position = Vector{0, 5};
-    p1.velocity = Vector{5, 0};
+    p1.position = Vector{0, 0};
+    p1.velocity = Vector{0, -10};
 
     Particle p2;
-    p2.position = Vector{5, 5};
-    p2.velocity = Vector{0, 0};
+    p2.position = Vector{0, 5};
+    p2.velocity = Vector{0, 10};
     
     frame.all_particles.push_back(p1);
     frame.all_particles.push_back(p2);
+    frame.number_of_particles = 2;
 
     update_frame(frame);
 

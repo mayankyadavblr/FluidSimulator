@@ -7,9 +7,9 @@
 
 int main()
 {
-    int number_of_particles = 250;
+    int number_of_particles = 2;
 
-    auto window = sf::RenderWindow(sf::VideoMode({1000, 1000}), "Fluid Simulator");
+    auto window = sf::RenderWindow(sf::VideoMode({100, 100}), "Fluid Simulator");
     window.setFramerateLimit(144);
     double x = window.getSize().x;
     double y = window.getSize().y;
