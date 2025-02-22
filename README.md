@@ -10,6 +10,9 @@ To mess around with starting conditions:
 * Use my cmake and src folder instead
 * Play around with sfml_test.cpp file in ./src/
 
+### Legend:
+* Color White to Black corresponds to lightest to heaviest
+
 ------------
 
 # Future work:
