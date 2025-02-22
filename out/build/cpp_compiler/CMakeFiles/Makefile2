@@ -458,10 +458,10 @@ _deps/vorbis-build/lib/clean: _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/c
 # Target rules for target CMakeFiles/FluidSim.dir
 
 # All Build rule for target.
-CMakeFiles/FluidSim.dir/all: _deps/sfml-build/src/SFML/Window/CMakeFiles/sfml-window.dir/all
 CMakeFiles/FluidSim.dir/all: _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/all
-CMakeFiles/FluidSim.dir/all: _deps/sfml-build/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all
+CMakeFiles/FluidSim.dir/all: _deps/sfml-build/src/SFML/Window/CMakeFiles/sfml-window.dir/all
 CMakeFiles/FluidSim.dir/all: _deps/freetype-build/CMakeFiles/freetype.dir/all
+CMakeFiles/FluidSim.dir/all: _deps/sfml-build/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\FluidSim.dir\build.make CMakeFiles/FluidSim.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\FluidSim.dir\build.make CMakeFiles/FluidSim.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=D:\mayank\Simulators\out\build\cpp_compiler\CMakeFiles --progress-num=17,18,19 "Built target FluidSim"
@@ -1517,8 +1517,8 @@ _deps/sfml-build/src/SFML/Network/CMakeFiles/sfml-network.dir/clean:
 # Target rules for target _deps/sfml-build/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir
 
 # All Build rule for target.
-_deps/sfml-build/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all: _deps/sfml-build/src/SFML/Window/CMakeFiles/sfml-window.dir/all
 _deps/sfml-build/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all: _deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/all
+_deps/sfml-build/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all: _deps/sfml-build/src/SFML/Window/CMakeFiles/sfml-window.dir/all
 _deps/sfml-build/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/all: _deps/freetype-build/CMakeFiles/freetype.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\sfml-build\src\SFML\Graphics\CMakeFiles\sfml-graphics.dir\build.make _deps/sfml-build/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\sfml-build\src\SFML\Graphics\CMakeFiles\sfml-graphics.dir\build.make _deps/sfml-build/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir/build
@@ -1587,8 +1587,8 @@ _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/all: _deps/sfml-build/
 _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/all: _deps/ogg-build/CMakeFiles/ogg.dir/all
 _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/all: _deps/flac-build/src/libFLAC/CMakeFiles/FLAC.dir/all
 _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/all: _deps/vorbis-build/lib/CMakeFiles/vorbisfile.dir/all
-_deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/all: _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/all
 _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/all: _deps/vorbis-build/lib/CMakeFiles/vorbisenc.dir/all
+_deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/all: _deps/vorbis-build/lib/CMakeFiles/vorbis.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps\sfml-build\src\SFML\Audio\CMakeFiles\sfml-audio.dir\build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\sfml-build\src\SFML\Audio\CMakeFiles\sfml-audio.dir\build.make _deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=D:\mayank\Simulators\out\build\cpp_compiler\CMakeFiles --progress-num=42,43,44,45,46,47,48,49,50,51,52 "Built target sfml-audio"

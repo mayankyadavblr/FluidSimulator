@@ -2,10 +2,15 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-int temp(){
+int main(){
     Frame frame;
     frame.dt = 1.00/60.00;
     frame.number_of_particles = 1;
+    frame.boundary = Rectangle{Vector{5, 5}, 5, 5};
+    subdivide_frame(frame);
+    std::cout<<frame.topLeft->boundary.width << std::endl;
+    std::cout<<frame.topLeft->boundary.height << std::endl;
+
     
     Particle p1;
     p1.position = Vector{0, 0};

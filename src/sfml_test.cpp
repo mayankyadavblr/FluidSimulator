@@ -5,7 +5,7 @@
 #include <cstdlib>
 #include "frame.h"
 
-int main()
+int temp()
 {
     int number_of_particles = 5;
 

@@ -96,3 +96,38 @@ void check_boundaries(Frame& frame){
         }
     }
 }
+
+void subdivide_frame(Frame& frame){
+    // Hard set dt, max_number_of_particles, number_of_particles
+    frame.topLeft = new Frame;
+    frame.topLeft->dt = frame.dt; frame.topLeft->max_number_of_particles = frame.max_number_of_particles; frame.topLeft->number_of_particles = frame.number_of_particles;
+    frame.topLeft->boundary = Rectangle{
+        frame.boundary.center + Vector{-frame.boundary.width/2.00, frame.boundary.height/2.00},
+        frame.boundary.width/2.00,
+        frame.boundary.height/2.00
+    };
+
+    frame.topRight = new Frame;
+    frame.topRight->dt = frame.dt; frame.topRight->max_number_of_particles = frame.max_number_of_particles; frame.topRight->number_of_particles = frame.number_of_particles;
+    frame.topRight->boundary = Rectangle{
+        frame.boundary.center + Vector{frame.boundary.width/2.00, frame.boundary.height/2.00},
+        frame.boundary.width/2.00,
+        frame.boundary.height/2.00
+    };
+
+    frame.bottomLeft = new Frame;
+    frame.bottomLeft->dt = frame.dt; frame.bottomLeft->max_number_of_particles = frame.max_number_of_particles; frame.bottomLeft->number_of_particles = frame.number_of_particles;
+    frame.bottomLeft->boundary = Rectangle{
+        frame.boundary.center + Vector{-frame.boundary.width/2.00, -frame.boundary.height/2.00},
+        frame.boundary.width/2.00,
+        frame.boundary.height/2.00
+    };
+
+    frame.bottomRight = new Frame;
+    frame.bottomRight->dt = frame.dt; frame.bottomRight->max_number_of_particles = frame.max_number_of_particles; frame.bottomRight->number_of_particles = frame.number_of_particles;
+    frame.bottomRight->boundary = Rectangle{
+        frame.boundary.center + Vector{frame.boundary.width/2.00, -frame.boundary.height/2.00},
+        frame.boundary.width/2.00,
+        frame.boundary.height/2.00
+    };
+}
