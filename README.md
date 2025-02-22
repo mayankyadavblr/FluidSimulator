@@ -1,3 +1,26 @@
+# How to use:
+
+To run my current version:
+* Navigate to ./out/build/cpp_compiler/FluidSim.exe
+* Download the .exe file and run in your terminal
+
+To mess around with starting conditions:
+* Make sure you have cmake and a cpp compiler installed
+* Follow https://github.com/SFML/cmake-sfml-project/tree/master
+* Use my cmake and src folder instead
+* Play around with sfml_test.cpp file in ./src/
+
+------------
+
+# Future work:
+
+* Test out quadtree implementation
+* Refactor Rectangle struct and clean up code
+* Documentation
+* Implement the final optimization for sampling points
+
+------------
+
 # Benchmarks:
 
 ## Frame size: 1000px X 1000px
@@ -9,7 +32,6 @@
 * 500/70
 
 * 1000/25
-
 ------------
 # Change log / current status:
 Feb-18th
@@ -26,8 +48,6 @@ Feb-20th
 * Fixed and tested linear interpolation
 * Refactored code avoid redefinitions of dt
 * Fixed fake 'tunneling' effect in graphics
-------------
-# Future work:
 
-* Implement optimized collision checks (BVH)
-
+Feb-21st
+* Implemented Quadtree for density aware frame subdivision
