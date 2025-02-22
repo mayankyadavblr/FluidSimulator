@@ -5,11 +5,11 @@
 #include <cstdlib>
 #include "frame.h"
 
-int temp()
+int main()
 {
-    int number_of_particles = 5;
+    int number_of_particles = 100;
 
-    auto window = sf::RenderWindow(sf::VideoMode({200, 200}), "Fluid Simulator");
+    auto window = sf::RenderWindow(sf::VideoMode({500, 500}), "Fluid Simulator");
     window.setFramerateLimit(60);
     double x = window.getSize().x;
     double y = window.getSize().y;
