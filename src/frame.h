@@ -40,4 +40,8 @@ void insert_point(Particle& p, Frame& frame);
 
 bool contains(Vector p, Rectangle boundary);
 
+bool intersects(Rectangle r1, Rectangle r2);
+
+std::vector<Particle> query(Rectangle r, Frame& frame, std::vector<Particle>& found_particles);
+
 #endif 

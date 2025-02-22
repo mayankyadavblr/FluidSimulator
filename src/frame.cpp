@@ -160,4 +160,33 @@ bool contains(Vector p, Rectangle boundary) {
         p.y > boundary.center.y - boundary.height){
         return true;
     }
+    return false;
+}
+
+bool intersects(Rectangle r1, Rectangle r2) {
+    if (r1.center.x - r1.width > r2.center.x + r2.width ||
+        r1.center.x + r1.width < r2.center.x - r2.width ||
+        r1.center.y - r1.height > r2.center.y + r2.height ||
+        r1.center.y + r1.height < r2.center.y - r2.height) {
+            return false;
+        }
+    return true;
+}
+
+std::vector<Particle> query(Rectangle r, Frame& frame, std::vector<Particle>& found_particles) {
+    if (intersects(r, frame.boundary)){
+        return found_particles;
+    }
+    for (int i=0; i<frame.number_of_particles; i++){
+        if (contains(frame.all_particles[i].position, r)){
+            found_particles.push_back(frame.all_particles[i]);
+        }
+    }
+    if (frame.divided) {
+        query(r, *frame.topLeft, found_particles);
+        query(r, *frame.topRight, found_particles);
+        query(r, *frame.bottomLeft, found_particles);
+        query(r, *frame.bottomRight, found_particles);
+    }
+    return found_particles;
 }
