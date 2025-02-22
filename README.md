@@ -25,8 +25,9 @@ Feb-19th
 Feb-20th
 * Fixed and tested linear interpolation
 * Refactored code avoid redefinitions of dt
+* Fixed fake 'tunneling' effect in graphics
 ------------
 # Future work:
 
-* Start looking at n^2 collision check optimization
+* Implement optimized collision checks (BVH)
 
