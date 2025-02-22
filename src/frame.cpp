@@ -131,3 +131,33 @@ void subdivide_frame(Frame& frame){
         frame.boundary.height/2.00
     };
 }
+
+void insert_point(Particle& p, Frame& frame){
+    if (!contains(p.position, frame.boundary)){
+        return;
+    }
+    if (frame.number_of_particles < frame.max_number_of_particles) {
+        frame.all_particles.push_back(p);
+        frame.number_of_particles++;
+    }
+    else {
+        if (! frame.divided) {
+            subdivide_frame(frame);
+            frame.divided = true;
+        }
+        insert_point(p, *frame.topLeft);
+        insert_point(p, *frame.topRight);
+        insert_point(p, *frame.bottomLeft);
+        insert_point(p, *frame.bottomRight);
+    }
+
+}
+
+bool contains(Vector p, Rectangle boundary) {
+    if (p.x > boundary.center.x - boundary.width &&
+        p.x < boundary.center.x + boundary.width &&
+        p.y < boundary.center.y + boundary.height &&
+        p.y > boundary.center.y - boundary.height){
+        return true;
+    }
+}

@@ -36,4 +36,8 @@ void check_boundaries(Frame& frame);
 
 void subdivide_frame(Frame& frame);
 
+void insert_point(Particle& p, Frame& frame);
+
+bool contains(Vector p, Rectangle boundary);
+
 #endif 
