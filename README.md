@@ -1,4 +1,5 @@
 # How to use:
+Note: currently dysfunctional
 
 To run my current version:
 * Navigate to ./out/build/cpp_compiler/FluidSim.exe
