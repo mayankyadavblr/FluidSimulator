@@ -17,10 +17,9 @@ To mess around with starting conditions:
 
 # Future work:
 
-* Test out quadtree implementation
+* Clean up code
 * Refactor Rectangle struct and clean up code
 * Documentation
-* Implement the final optimization for sampling points
 
 ------------
 
@@ -54,3 +53,6 @@ Feb-20th
 
 Feb-21st
 * Implemented Quadtree for density aware frame subdivision
+
+Feb-22nd
+* Debugging quad tree implementation
