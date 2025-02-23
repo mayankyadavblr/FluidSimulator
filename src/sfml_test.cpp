@@ -7,29 +7,32 @@
 
 int main()
 {
-    int number_of_particles = 100;
+    int number_of_particles = 1;
 
-    auto window = sf::RenderWindow(sf::VideoMode({500, 500}), "Fluid Simulator");
+    auto window = sf::RenderWindow(sf::VideoMode({1000, 1000}), "Fluid Simulator");
     window.setFramerateLimit(60);
     double x = window.getSize().x;
     double y = window.getSize().y;
     
     std::vector<sf::CircleShape> all_circles;
+    std::vector<Particle> all_particles;
+    std::vector<Particle> neighbors;
     
-    Frame frame;
-    frame.dt = 1.00/60.00;
-    frame.number_of_particles = number_of_particles;
-    frame.tr = {x, 0};
-    frame.bl = {0, y};
+    // Frame frame;
+    // frame.dt = 1.00/60.00;
+    // frame.number_of_particles = number_of_particles;
+    // frame.boundary = Rectangle{Vector{x/2.00, y/2.00}, x/2.00, y/2.00};
+    // frame.tr = {x, 0};
+    // frame.bl = {0, y};
     
     for (int i=0; i < number_of_particles; ++i) {
         Particle p;
         double x = rand()%window.getSize().x;
         double y = rand()%window.getSize().y;
-        p.position = Vector{x, -y};
+        // p.position = Vector{x, -y};
         x = rand()%100;
         y = rand()%100;
-        p.velocity = Vector{x, y};
+        // p.velocity = Vector{x, y};
         double mass = rand()%5 + 10;
         // p.mass = 2;
         p.mass = mass;
@@ -37,7 +40,7 @@ int main()
         p.radius = radius;
         // p.radius = 10;
 
-        frame.all_particles.push_back(p);
+        all_particles.push_back(p);
 
         sf::CircleShape circle(p.radius);
         // circle.setFillColor(sf::Color::White);
@@ -71,6 +74,13 @@ int main()
     sf::Clock clock;
     float lastTime = 0;
     
+    Frame quad_tree;
+    // quad_tree.dt = frame.dt;
+    quad_tree.boundary = Rectangle{Vector{x/2.00, y/2.00}, x/2.00, y/2.00};
+    quad_tree.number_of_particles = 0;
+    quad_tree.tr = {x, 0};
+    quad_tree.bl = {0, y};
+
     while (window.isOpen()){
         while (const std::optional event = window.pollEvent()){
             if (event->is<sf::Event::Closed>())
@@ -78,21 +88,37 @@ int main()
                 window.close();
             }
         }
-        for (size_t i = 0; i < frame.number_of_particles - 1; ++i) {
-            for (size_t j = i + 1; j < frame.number_of_particles; ++j) {
-                detect_collision(frame.all_particles[i], frame.all_particles[j], frame.dt);
+        // for (size_t i = 0; i < frame.number_of_particles - 1; ++i) {
+        //     for (size_t j = i + 1; j < frame.number_of_particles; ++j) {
+        //         detect_collision(frame.all_particles[i], frame.all_particles[j], frame.dt);
+        //     }
+        // }
+        std::cout<<"checkpoint 1"<<std::endl;
+        for (size_t i = 0; i < number_of_particles; ++i){
+            insert_point(all_particles[i], quad_tree);
+        }
+        std::cout<<"checkpoint 2"<<std::endl;
+        for (size_t i = 0; i < number_of_particles; ++i){
+            Rectangle search_area = Rectangle{Vector{all_particles[i].position.x, all_particles[i].position.y}, 
+            2*all_particles[i].radius, 
+            2*all_particles[i].radius};
+            
+            query(search_area, quad_tree, neighbors);
+            for (size_t j = 0; j < neighbors.size(); j++){
+                detect_collision(all_particles[i], neighbors[j], quad_tree.dt);
             }
         }
-
-        check_boundaries(frame);
-
-        for (size_t i = 0; i < frame.number_of_particles; ++i){
-            update_particle(frame.all_particles[i], frame.dt);
+        
+        check_boundaries(quad_tree);
+        
+        std::cout<<"checkpoint 3"<<std::endl;
+        for (size_t i = 0; i < number_of_particles; ++i){
+            update_particle(all_particles[i], quad_tree.dt);
         }
-
+        clear_frame(quad_tree);
         window.clear(sf::Color::Black); 
-         for (int i = 0; i < frame.number_of_particles; ++i) {
-            all_circles[i].setPosition({frame.all_particles[i].position.x-frame.all_particles[i].radius, -frame.all_particles[i].position.y-frame.all_particles[i].radius});
+         for (int i = 0; i < number_of_particles; ++i) {
+            all_circles[i].setPosition({all_particles[i].position.x-all_particles[i].radius, -all_particles[i].position.y-all_particles[i].radius});
             window.draw(all_circles[i]);
         }
         sf::Time ElapsedTime = clock.restart();

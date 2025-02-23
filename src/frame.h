@@ -10,9 +10,9 @@ struct Rectangle {
     double height;
 };
 struct Frame {
-    double dt; // Set to inverse of desired frame rate
-    int number_of_particles;
-    int max_number_of_particles;
+    double dt = 1.00/60.00; // Set to inverse of desired frame rate
+    int number_of_particles=0;
+    int max_number_of_particles = 4;
     std::vector<Particle> all_particles;
 
     Rectangle boundary;
@@ -42,6 +42,8 @@ bool contains(Vector p, Rectangle boundary);
 
 bool intersects(Rectangle r1, Rectangle r2);
 
-std::vector<Particle> query(Rectangle r, Frame& frame, std::vector<Particle>& found_particles);
+void query(Rectangle r, Frame& frame, std::vector<Particle>& found_particles);
+
+void clear_frame(Frame& frame);
 
 #endif 

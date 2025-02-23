@@ -69,7 +69,10 @@ void update_frame(Frame& frame){
 }
 
 void check_boundaries(Frame& frame){
+    std::cout<<"in boundary"<<std::endl;
     for (size_t i = 0; i < frame.number_of_particles; ++i) {
+        std::cout<<i<<", "<<frame.number_of_particles<<frame.all_particles[i].mass<<std::endl;
+        std::cout<<"out boundary"<<std::endl;
         Particle& p = frame.all_particles[i];
         //RIGHT
         if (p.position.x > frame.tr.x - p.radius) {
@@ -154,6 +157,7 @@ void insert_point(Particle& p, Frame& frame){
 }
 
 bool contains(Vector p, Rectangle boundary) {
+    std::cout<<"Checkpoint contains"<<std::endl;
     if (p.x > boundary.center.x - boundary.width &&
         p.x < boundary.center.x + boundary.width &&
         p.y < boundary.center.y + boundary.height &&
@@ -173,11 +177,16 @@ bool intersects(Rectangle r1, Rectangle r2) {
     return true;
 }
 
-std::vector<Particle> query(Rectangle r, Frame& frame, std::vector<Particle>& found_particles) {
-    if (intersects(r, frame.boundary)){
-        return found_particles;
+void query(Rectangle r, Frame& frame, std::vector<Particle>& found_particles) {
+    std::cout<<frame.boundary.width<<std::endl;
+    if (!intersects(r, frame.boundary)){
+        return;
     }
     for (int i=0; i<frame.number_of_particles; i++){
+        std::cout<<frame.number_of_particles<<std::endl;
+        std::cout<<i<<std::endl;
+        std::cout<<frame.all_particles[i].position.x<<", "<<frame.all_particles[i].position.y<<std::endl;
+        std::cout<<"checkpoint inner"<<std::endl;
         if (contains(frame.all_particles[i].position, r)){
             found_particles.push_back(frame.all_particles[i]);
         }
@@ -188,5 +197,15 @@ std::vector<Particle> query(Rectangle r, Frame& frame, std::vector<Particle>& fo
         query(r, *frame.bottomLeft, found_particles);
         query(r, *frame.bottomRight, found_particles);
     }
-    return found_particles;
+}
+
+void clear_frame(Frame& frame){
+    frame.all_particles.clear();
+    frame.number_of_particles = 0;
+    if (frame.divided) {
+        delete frame.topLeft;
+        delete frame.topRight;
+        delete frame.bottomLeft;
+        delete frame.bottomRight;
+    }
 }
