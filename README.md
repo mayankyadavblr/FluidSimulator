@@ -22,6 +22,9 @@ To mess around with starting conditions:
 * Refactor Rectangle struct and clean up code
 * Documentation
 
+* Make boundary collision recursive
+* figure out deletion of quad_tree
+
 ------------
 
 # Benchmarks:

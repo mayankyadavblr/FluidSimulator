@@ -7,7 +7,7 @@
 
 int main()
 {
-    int number_of_particles = 1;
+    int number_of_particles = 5;
 
     auto window = sf::RenderWindow(sf::VideoMode({1000, 1000}), "Fluid Simulator");
     window.setFramerateLimit(60);
@@ -18,27 +18,21 @@ int main()
     std::vector<Particle> all_particles;
     std::vector<Particle> neighbors;
     
-    // Frame frame;
-    // frame.dt = 1.00/60.00;
-    // frame.number_of_particles = number_of_particles;
-    // frame.boundary = Rectangle{Vector{x/2.00, y/2.00}, x/2.00, y/2.00};
-    // frame.tr = {x, 0};
-    // frame.bl = {0, y};
-    
     for (int i=0; i < number_of_particles; ++i) {
         Particle p;
         double x = rand()%window.getSize().x;
         double y = rand()%window.getSize().y;
-        // p.position = Vector{x, -y};
+        p.position = Vector{x, -y};
+
         x = rand()%100;
         y = rand()%100;
-        // p.velocity = Vector{x, y};
+        p.velocity = Vector{x, y};
+
         double mass = rand()%5 + 10;
-        // p.mass = 2;
         p.mass = mass;
+
         double radius = rand()%10+1;
         p.radius = radius;
-        // p.radius = 10;
 
         all_particles.push_back(p);
 
@@ -48,21 +42,7 @@ int main()
         circle.setPosition({p.position.x-p.radius, p.position.y-p.radius});
         
         all_circles.push_back(circle);
-
-        // display_details(p);
-
     }
-
-    // Particle test;
-    // test.position = Vector{250, 250};
-    // test.radius = 8;
-    // test.mass = 32;
-    // frame.all_particles.push_back(test);
-    // frame.number_of_particles += 1;
-    // sf::CircleShape circle_test(test.radius);
-    // circle_test.setFillColor(sf::Color::Red);
-    // circle_test.setPosition({test.position.x, test.position.y});
-    // all_circles.push_back(circle_test);
 
     sf::Font font("D:\\mayank\\Simulators\\Tinos-Regular.ttf"); 
     sf::Text text(font); 
@@ -75,7 +55,8 @@ int main()
     float lastTime = 0;
     
     Frame quad_tree;
-    // quad_tree.dt = frame.dt;
+    // delete quad_tree;
+
     quad_tree.boundary = Rectangle{Vector{x/2.00, y/2.00}, x/2.00, y/2.00};
     quad_tree.number_of_particles = 0;
     quad_tree.tr = {x, 0};
@@ -88,16 +69,11 @@ int main()
                 window.close();
             }
         }
-        // for (size_t i = 0; i < frame.number_of_particles - 1; ++i) {
-        //     for (size_t j = i + 1; j < frame.number_of_particles; ++j) {
-        //         detect_collision(frame.all_particles[i], frame.all_particles[j], frame.dt);
-        //     }
-        // }
-        std::cout<<"checkpoint 1"<<std::endl;
         for (size_t i = 0; i < number_of_particles; ++i){
             insert_point(all_particles[i], quad_tree);
         }
-        std::cout<<"checkpoint 2"<<std::endl;
+        std::cout<<quad_tree.number_of_particles<<std::endl;
+        std::cout<<quad_tree.divided<<std::endl;
         for (size_t i = 0; i < number_of_particles; ++i){
             Rectangle search_area = Rectangle{Vector{all_particles[i].position.x, all_particles[i].position.y}, 
             2*all_particles[i].radius, 
@@ -107,15 +83,18 @@ int main()
             for (size_t j = 0; j < neighbors.size(); j++){
                 detect_collision(all_particles[i], neighbors[j], quad_tree.dt);
             }
+            neighbors = std::vector<Particle>();
         }
-        
         check_boundaries(quad_tree);
         
-        std::cout<<"checkpoint 3"<<std::endl;
         for (size_t i = 0; i < number_of_particles; ++i){
             update_particle(all_particles[i], quad_tree.dt);
         }
-        clear_frame(quad_tree);
+        
+        delete &quad_tree;
+        // clear_frame(quad_tree);
+        std::cout<<"checkpoint 1"<<std::endl;
+        
         window.clear(sf::Color::Black); 
          for (int i = 0; i < number_of_particles; ++i) {
             all_circles[i].setPosition({all_particles[i].position.x-all_particles[i].radius, -all_particles[i].position.y-all_particles[i].radius});
