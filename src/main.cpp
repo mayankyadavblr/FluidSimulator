@@ -1,33 +1,130 @@
-#include "frame.h"
-#include <iostream>
 #include <SFML/Graphics.hpp>
-
-int temp(){
-    Frame frame;
-    frame.dt = 1.00/60.00;
-    frame.number_of_particles = 1;
-    frame.boundary = Rectangle{Vector{5, 5}, 5, 5};
-    subdivide_frame(frame);
-    std::cout<<frame.topLeft->boundary.width << std::endl;
-    std::cout<<frame.topLeft->boundary.height << std::endl;
-
+#include <SFML/System/Time.hpp>
+#include <iostream>
+#include <random>
+#include <cstdlib>
+#include "frame.h"
+void draw_quad_tree(sf::RenderWindow& window, Frame frame){
     
-    Particle p1;
-    p1.position = Vector{0, 0};
-    p1.velocity = Vector{0, -10};
+    sf::RectangleShape line1({2*frame.boundary.width, 10});
+    sf::RectangleShape line2({2*frame.boundary.width, 10});
+    sf::RectangleShape line3({2*frame.boundary.height, 10});
+    line3.setRotation(sf::degrees(90));
+    sf::RectangleShape line4({2*frame.boundary.height, 10});
+    line4.setRotation(sf::degrees(90));
+    line1.setPosition({frame.boundary.center.x - frame.boundary.width, frame.boundary.center.y - frame.boundary.height});
+    line2.setPosition({frame.boundary.center.x - frame.boundary.width, frame.boundary.center.y + frame.boundary.height});
+    line3.setPosition({frame.boundary.center.x - frame.boundary.width, frame.boundary.center.y - frame.boundary.height});
+    line4.setPosition({frame.boundary.center.x + frame.boundary.width, frame.boundary.center.y - frame.boundary.height});
+    window.draw(line1);
+    window.draw(line2);
+    window.draw(line3);
+    window.draw(line4);
 
-    Particle p2;
-    p2.position = Vector{0, 5};
-    p2.velocity = Vector{0, 10};
+
+    if (frame.divided){
+        draw_quad_tree(window, *frame.topLeft);
+        draw_quad_tree(window, *frame.topRight);
+        draw_quad_tree(window, *frame.bottomLeft);
+        draw_quad_tree(window, *frame.bottomRight);
+    }
+}
+int temp()
+{
+    int number_of_particles = 100;
+
+    auto window = sf::RenderWindow(sf::VideoMode({1000, 1000}), "Fluid Simulator");
+    window.setFramerateLimit(60);
+    double x = window.getSize().x;
+    double y = window.getSize().y;
     
-    frame.all_particles.push_back(p1);
-    frame.all_particles.push_back(p2);
-    frame.number_of_particles = 2;
+    std::vector<sf::CircleShape> all_circles;
+    std::vector<Particle> all_particles;
+    std::vector<Particle> neighbors;
+    Rectangle search_area = Rectangle{Vector{250, 250}, 250, 250};
+    
+    for (int i=0; i < number_of_particles; ++i) {
+        Particle p;
+        double x = rand()%window.getSize().x;
+        double y = rand()%window.getSize().y;
+        p.position = Vector{x, -y};
 
-    update_frame(frame);
+        x = rand()%100;
+        y = rand()%100;
+        p.velocity = Vector{x, y};
 
-    display_details(frame.all_particles[0]);
-    display_details(frame.all_particles[1]);
+        double mass = rand()%5 + 10;
+        p.mass = mass;
 
+        double radius = rand()%10+1;
+        p.radius = radius;
+
+        all_particles.push_back(p);
+
+        sf::CircleShape circle(p.radius);
+        // circle.setFillColor(sf::Color::White);
+        circle.setFillColor({255, 255, 255, 255/(mass-9)});
+        circle.setPosition({p.position.x-p.radius, p.position.y-p.radius});
+        
+        all_circles.push_back(circle);
+    }
+
+    sf::Font font("D:\\mayank\\Simulators\\Tinos-Regular.ttf"); 
+    sf::Text text(font); 
+    text.setString("Hello world");
+    text.setCharacterSize(24); 
+    text.setFillColor(sf::Color::Red);
+    
+    int frame_count = 0;
+    sf::Clock clock;
+    float lastTime = 0;
+    
+    Frame quad_tree;
+
+    quad_tree.boundary = Rectangle{Vector{x/2.00, y/2.00}, x/2.00, y/2.00};
+    quad_tree.number_of_particles = 0;
+    quad_tree.tr = {x, 0};
+    quad_tree.bl = {0, y};
+
+
+    while (window.isOpen()){
+        while (const std::optional event = window.pollEvent()){
+            if (event->is<sf::Event::Closed>())
+            {
+                window.close();
+            }
+        }
+        // show_details(quad_tree);
+        // std::cout<<"inserting into quad tree"<<std::endl;
+        // Insert points into fresh Quad Tree
+        for (size_t i = 0; i < number_of_particles; ++i){
+            insert_point(all_particles[i], quad_tree);
+        }
+        // show_details(quad_tree);
+        query(search_area, quad_tree, neighbors);
+        for (int i=0; i<neighbors.size(); i++){
+            std::cout<<neighbors[i].position.x<<", "<<neighbors[i].position.y<<std::endl;
+        }
+        
+        window.clear(sf::Color::Black); 
+        for (int i = 0; i < number_of_particles; ++i) {
+            all_circles[i].setPosition({all_particles[i].position.x-all_particles[i].radius, -all_particles[i].position.y-all_particles[i].radius});
+            window.draw(all_circles[i]);
+        }
+        sf::Time ElapsedTime = clock.restart();
+        int time = 1/ElapsedTime.asSeconds();
+        if (frame_count == 50) {
+            text.setString(std::to_string(time));
+            frame_count = 0;
+        }
+        frame_count++;
+        window.draw(text);
+        // draw_test(window);
+        draw_quad_tree(window, quad_tree);
+        clear_quad_tree(quad_tree);
+        window.display();
+        // break;
+        
+    }
     return 0;
 }

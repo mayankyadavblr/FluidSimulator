@@ -1,6 +1,8 @@
 #ifndef FRAME_H 
 #define FRAME_H
 #include <vector>
+#include <SFML/Graphics.hpp>
+#include <SFML/System/Time.hpp>
 
 #include "particle.h"
 
@@ -44,6 +46,10 @@ bool intersects(Rectangle r1, Rectangle r2);
 
 void query(Rectangle r, Frame& frame, std::vector<Particle>& found_particles);
 
-void clear_frame(Frame& frame);
+void clear_frame(Frame* frame);
+
+void clear_quad_tree(Frame& quad_tree);
+
+void show_details(Frame frame);
 
 #endif 

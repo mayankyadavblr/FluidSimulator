@@ -95,41 +95,55 @@ void check_boundaries(Frame& frame){
             p.velocity.y = - p.velocity.y;
         }
     }
+    if (frame.divided){
+        check_boundaries(*frame.topLeft);
+        check_boundaries(*frame.topRight);
+        check_boundaries(*frame.bottomLeft);
+        check_boundaries(*frame.bottomRight);
+    }
 }
 
 void subdivide_frame(Frame& frame){
     // Hard set dt, max_number_of_particles, number_of_particles
     frame.topLeft = new Frame;
-    frame.topLeft->dt = frame.dt; frame.topLeft->max_number_of_particles = frame.max_number_of_particles; frame.topLeft->number_of_particles = frame.number_of_particles;
+    frame.topLeft->dt = frame.dt; frame.topLeft->max_number_of_particles = frame.max_number_of_particles;
     frame.topLeft->boundary = Rectangle{
-        frame.boundary.center + Vector{-frame.boundary.width/2.00, frame.boundary.height/2.00},
-        frame.boundary.width/2.00,
-        frame.boundary.height/2.00
-    };
-
-    frame.topRight = new Frame;
-    frame.topRight->dt = frame.dt; frame.topRight->max_number_of_particles = frame.max_number_of_particles; frame.topRight->number_of_particles = frame.number_of_particles;
-    frame.topRight->boundary = Rectangle{
-        frame.boundary.center + Vector{frame.boundary.width/2.00, frame.boundary.height/2.00},
-        frame.boundary.width/2.00,
-        frame.boundary.height/2.00
-    };
-
-    frame.bottomLeft = new Frame;
-    frame.bottomLeft->dt = frame.dt; frame.bottomLeft->max_number_of_particles = frame.max_number_of_particles; frame.bottomLeft->number_of_particles = frame.number_of_particles;
-    frame.bottomLeft->boundary = Rectangle{
         frame.boundary.center + Vector{-frame.boundary.width/2.00, -frame.boundary.height/2.00},
         frame.boundary.width/2.00,
         frame.boundary.height/2.00
     };
+    frame.topLeft->tr = frame.boundary.center - Vector{0, frame.boundary.height};
+    frame.topLeft->bl = frame.boundary.center - Vector{frame.boundary.width, 0};
 
-    frame.bottomRight = new Frame;
-    frame.bottomRight->dt = frame.dt; frame.bottomRight->max_number_of_particles = frame.max_number_of_particles; frame.bottomRight->number_of_particles = frame.number_of_particles;
-    frame.bottomRight->boundary = Rectangle{
+    frame.topRight = new Frame;
+    frame.topRight->dt = frame.dt; frame.topRight->max_number_of_particles = frame.max_number_of_particles;
+    frame.topRight->boundary = Rectangle{
         frame.boundary.center + Vector{frame.boundary.width/2.00, -frame.boundary.height/2.00},
         frame.boundary.width/2.00,
         frame.boundary.height/2.00
     };
+    frame.topRight->tr = frame.boundary.center + Vector{frame.boundary.width, -frame.boundary.height};
+    frame.topRight->bl = frame.boundary.center;
+
+    frame.bottomLeft = new Frame;
+    frame.bottomLeft->dt = frame.dt; frame.bottomLeft->max_number_of_particles = frame.max_number_of_particles;
+    frame.bottomLeft->boundary = Rectangle{
+        frame.boundary.center + Vector{-frame.boundary.width/2.00, +frame.boundary.height/2.00},
+        frame.boundary.width/2.00,
+        frame.boundary.height/2.00
+    };
+    frame.bottomLeft->tr = frame.boundary.center;
+    frame.bottomLeft->bl = frame.boundary.center - Vector{frame.boundary.width, -frame.boundary.height};
+
+    frame.bottomRight = new Frame;
+    frame.bottomRight->dt = frame.dt; frame.bottomRight->max_number_of_particles = frame.max_number_of_particles;
+    frame.bottomRight->boundary = Rectangle{
+        frame.boundary.center + Vector{frame.boundary.width/2.00, +frame.boundary.height/2.00},
+        frame.boundary.width/2.00,
+        frame.boundary.height/2.00
+    };
+    frame.bottomRight->tr = frame.boundary.center + Vector{frame.boundary.width, 0};
+    frame.bottomRight->bl = frame.boundary.center + Vector{0, frame.boundary.height};
 }
 
 void insert_point(Particle& p, Frame& frame){
@@ -174,7 +188,6 @@ bool intersects(Rectangle r1, Rectangle r2) {
 }
 
 void query(Rectangle r, Frame& frame, std::vector<Particle>& found_particles) {
-    std::cout<<frame.boundary.width<<std::endl;
     if (!intersects(r, frame.boundary)){
         return;
     }
@@ -191,19 +204,41 @@ void query(Rectangle r, Frame& frame, std::vector<Particle>& found_particles) {
     }
 }
 
-void clear_frame(Frame& frame){
-    if (frame.divided) {
-        std::cout<<"divided"<<std::endl;
-        clear_frame(*frame.topLeft);
-        clear_frame(*frame.topRight);
-        clear_frame(*frame.bottomLeft);
-        clear_frame(*frame.bottomRight);
+void clear_frame(Frame* frame){
+    if (frame->divided) {
+        clear_frame(frame->topLeft);
+        clear_frame(frame->topRight);
+        clear_frame(frame->bottomLeft);
+        clear_frame(frame->bottomRight);
     }
-    std::cout<<"blah"<<std::endl;
-    frame.all_particles = std::vector<Particle>();
-    std::cout<<"blah"<<std::endl;
-    std::cout<<frame.number_of_particles<<", "<<frame.max_number_of_particles<<std::endl;
-    delete &frame;
+    frame->all_particles = std::vector<Particle>();
 
-    std::cout<<"blah"<<std::endl;
+    delete frame;
 }
+
+void clear_quad_tree(Frame& quad_tree){
+    quad_tree.number_of_particles = 0;
+    quad_tree.all_particles = std::vector<Particle>();
+    quad_tree.divided = 0;
+    if (quad_tree.divided){
+        clear_frame(quad_tree.topLeft);
+        clear_frame(quad_tree.topRight);
+        clear_frame(quad_tree.bottomLeft);
+        clear_frame(quad_tree.bottomRight);
+    }
+}
+
+void show_details(Frame frame){
+    std::cout<<"frame center: "<<frame.boundary.center.x<<", "<<frame.boundary.center.y<<std::endl;
+    std::cout<<"number of particles: "<<frame.number_of_particles<<std::endl;
+    std::cout<<"divided: "<<frame.divided<<std::endl;
+    std::cout<<"frame dimensions: "<<frame.boundary.width<<", "<<frame.boundary.height<<std::endl;
+
+    if (frame.divided){
+        show_details(*frame.topLeft);
+        show_details(*frame.topRight);
+        show_details(*frame.bottomLeft);
+        show_details(*frame.bottomRight);
+    }
+}
+

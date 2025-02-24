@@ -7,10 +7,10 @@
 
 int main()
 {
-    int number_of_particles = 5;
+    int number_of_particles = 1000;
 
     auto window = sf::RenderWindow(sf::VideoMode({1000, 1000}), "Fluid Simulator");
-    window.setFramerateLimit(60);
+    window.setFramerateLimit(144);
     double x = window.getSize().x;
     double y = window.getSize().y;
     
@@ -55,7 +55,6 @@ int main()
     float lastTime = 0;
     
     Frame quad_tree;
-    // delete quad_tree;
 
     quad_tree.boundary = Rectangle{Vector{x/2.00, y/2.00}, x/2.00, y/2.00};
     quad_tree.number_of_particles = 0;
@@ -69,15 +68,15 @@ int main()
                 window.close();
             }
         }
+
         for (size_t i = 0; i < number_of_particles; ++i){
             insert_point(all_particles[i], quad_tree);
         }
-        std::cout<<quad_tree.number_of_particles<<std::endl;
-        std::cout<<quad_tree.divided<<std::endl;
+
         for (size_t i = 0; i < number_of_particles; ++i){
             Rectangle search_area = Rectangle{Vector{all_particles[i].position.x, all_particles[i].position.y}, 
-            2*all_particles[i].radius, 
-            2*all_particles[i].radius};
+            100, 
+            100};
             
             query(search_area, quad_tree, neighbors);
             for (size_t j = 0; j < neighbors.size(); j++){
@@ -85,15 +84,14 @@ int main()
             }
             neighbors = std::vector<Particle>();
         }
-        check_boundaries(quad_tree);
         
+        check_boundaries(quad_tree);
+
         for (size_t i = 0; i < number_of_particles; ++i){
             update_particle(all_particles[i], quad_tree.dt);
         }
         
-        delete &quad_tree;
-        // clear_frame(quad_tree);
-        std::cout<<"checkpoint 1"<<std::endl;
+        clear_quad_tree(quad_tree);
         
         window.clear(sf::Color::Black); 
          for (int i = 0; i < number_of_particles; ++i) {
@@ -109,7 +107,7 @@ int main()
         frame_count++;
         window.draw(text);
         window.display();
-        
+        // break;
     }
     return 0;
 }
