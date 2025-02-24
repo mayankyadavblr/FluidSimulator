@@ -7,7 +7,7 @@
 
 int main()
 {
-    int number_of_particles = 1000;
+    int number_of_particles = 500;
 
     auto window = sf::RenderWindow(sf::VideoMode({1000, 1000}), "Fluid Simulator");
     window.setFramerateLimit(144);
@@ -91,10 +91,9 @@ int main()
             update_particle(all_particles[i], quad_tree.dt);
         }
         
-        clear_quad_tree(quad_tree);
         
         window.clear(sf::Color::Black); 
-         for (int i = 0; i < number_of_particles; ++i) {
+        for (int i = 0; i < number_of_particles; ++i) {
             all_circles[i].setPosition({all_particles[i].position.x-all_particles[i].radius, -all_particles[i].position.y-all_particles[i].radius});
             window.draw(all_circles[i]);
         }
@@ -106,6 +105,8 @@ int main()
         }
         frame_count++;
         window.draw(text);
+        draw_quad_tree(window, quad_tree);
+        clear_quad_tree(quad_tree);
         window.display();
         // break;
     }

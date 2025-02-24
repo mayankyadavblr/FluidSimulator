@@ -52,4 +52,6 @@ void clear_quad_tree(Frame& quad_tree);
 
 void show_details(Frame frame);
 
+void draw_quad_tree(sf::RenderWindow& window, Frame frame);
+
 #endif 

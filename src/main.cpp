@@ -4,31 +4,7 @@
 #include <random>
 #include <cstdlib>
 #include "frame.h"
-void draw_quad_tree(sf::RenderWindow& window, Frame frame){
-    
-    sf::RectangleShape line1({2*frame.boundary.width, 10});
-    sf::RectangleShape line2({2*frame.boundary.width, 10});
-    sf::RectangleShape line3({2*frame.boundary.height, 10});
-    line3.setRotation(sf::degrees(90));
-    sf::RectangleShape line4({2*frame.boundary.height, 10});
-    line4.setRotation(sf::degrees(90));
-    line1.setPosition({frame.boundary.center.x - frame.boundary.width, frame.boundary.center.y - frame.boundary.height});
-    line2.setPosition({frame.boundary.center.x - frame.boundary.width, frame.boundary.center.y + frame.boundary.height});
-    line3.setPosition({frame.boundary.center.x - frame.boundary.width, frame.boundary.center.y - frame.boundary.height});
-    line4.setPosition({frame.boundary.center.x + frame.boundary.width, frame.boundary.center.y - frame.boundary.height});
-    window.draw(line1);
-    window.draw(line2);
-    window.draw(line3);
-    window.draw(line4);
 
-
-    if (frame.divided){
-        draw_quad_tree(window, *frame.topLeft);
-        draw_quad_tree(window, *frame.topRight);
-        draw_quad_tree(window, *frame.bottomLeft);
-        draw_quad_tree(window, *frame.bottomRight);
-    }
-}
 int temp()
 {
     int number_of_particles = 100;
