@@ -18,12 +18,12 @@ To mess around with starting conditions:
 
 # Future work:
 
+* Convert referecens to pointers (vector.pushback makes a copy)
+* Refactor Rectangle struct 
 * Clean up code
-* Refactor Rectangle struct and clean up code
 * Documentation
 
-* Make boundary collision recursive
-* figure out deletion of quad_tree
+
 
 ------------
 
@@ -60,3 +60,7 @@ Feb-21st
 
 Feb-22nd
 * Debugging quad tree implementation
+
+Feb-23rd
+* Made boundary collision recursive
+* Figured out deletion of quad_tree
