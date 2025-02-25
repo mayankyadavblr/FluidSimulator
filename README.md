@@ -1,5 +1,4 @@
 # How to use:
-Note: currently dysfunctional
 
 To run my current version:
 * Navigate to ./out/build/cpp_compiler/FluidSim.exe
@@ -18,7 +17,8 @@ To mess around with starting conditions:
 
 # Future work:
 
-* Convert referecens to pointers (vector.pushback makes a copy)
+* Optimize boundary collision checks
+* Look for more optimizations
 * Refactor Rectangle struct 
 * Clean up code
 * Documentation
@@ -35,9 +35,9 @@ To mess around with starting conditions:
 
 * 250/170
 
-* 500/70
+* 500/110
 
-* 1000/25
+* 1000/50
 ------------
 # Change log / current status:
 Feb-18th
@@ -64,3 +64,6 @@ Feb-22nd
 Feb-23rd
 * Made boundary collision recursive
 * Figured out deletion of quad_tree
+
+Feb-24th
+* Finally fixed quad tree

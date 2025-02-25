@@ -7,7 +7,7 @@
 
 int main()
 {
-    int number_of_particles = 1000;
+    int number_of_particles = 500;
 
     auto window = sf::RenderWindow(sf::VideoMode({1000, 1000}), "Fluid Simulator");
     window.setFramerateLimit(144);
