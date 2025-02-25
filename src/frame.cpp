@@ -207,6 +207,7 @@ void query(Rectangle r, Frame& frame, std::vector<Particle*>& found_particles) {
         query(r, *frame.bottomLeft, found_particles);
         query(r, *frame.bottomRight, found_particles);
     }
+    // std::cout<<found_particles.size()<<std::endl;
 }
 
 void clear_frame(Frame* frame){
@@ -238,7 +239,8 @@ void show_details(Frame frame){
     std::cout<<"number of particles: "<<frame.number_of_particles<<std::endl;
     std::cout<<"divided: "<<frame.divided<<std::endl;
     std::cout<<"frame dimensions: "<<frame.boundary.width<<", "<<frame.boundary.height<<std::endl;
-
+    std::cout<<std::endl;
+    
     if (frame.divided){
         show_details(*frame.topLeft);
         show_details(*frame.topRight);

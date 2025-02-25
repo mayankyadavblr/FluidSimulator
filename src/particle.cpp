@@ -19,7 +19,7 @@ void detect_collision(Particle* p1, Particle* p2, double dt) {
     // dt = 1.00/60.00;
     double distance_btw_centers = distance(p1->position, p2->position);
     if (distance_btw_centers < p1->radius + p2->radius) {
-        std::cout<<"collision detected"<<std::endl;
+        
         double collision_time = resolve_intersection(p1, p2, dt);
         resolve_collision(p1, p2);
         

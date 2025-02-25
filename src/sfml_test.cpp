@@ -7,7 +7,7 @@
 
 int main()
 {
-    int number_of_particles = 500;
+    int number_of_particles = 1000;
 
     auto window = sf::RenderWindow(sf::VideoMode({1000, 1000}), "Fluid Simulator");
     window.setFramerateLimit(144);
@@ -74,18 +74,21 @@ int main()
         }
 
         for (size_t i = 0; i < number_of_particles; ++i){
-            Rectangle search_area = Rectangle{Vector{all_particles[i].position.x, all_particles[i].position.y}, 
-            100, 
-            100};
+            Rectangle search_area = Rectangle{Vector{all_particles[i].position.x, -all_particles[i].position.y}, 
+            50, 
+            50};
             
             query(search_area, quad_tree, neighbors);
-            if (neighbors.size() > 0){
-                // std::cout<<"neighbors detected"<<neighbors.size()<<std::endl;
-            }
+            // show_details(quad_tree);
+            // std::cout<<neighbors.size()<<std::endl;
+
             for (size_t j = 0; j < neighbors.size(); j++){
-                detect_collision(&all_particles[i], neighbors[j], quad_tree.dt);
+                if (&all_particles[i] != neighbors[j]){    
+                    detect_collision(&all_particles[i], neighbors[j], quad_tree.dt);
+                }
             }
             neighbors = std::vector<Particle*>();
+            
         }
         
         check_boundaries(quad_tree, quad_tree.tr, quad_tree.bl);
@@ -108,7 +111,7 @@ int main()
         }
         frame_count++;
         window.draw(text);
-        draw_quad_tree(window, quad_tree);
+        // draw_quad_tree(window, quad_tree);
         clear_quad_tree(quad_tree);
         window.display();
         // break;
