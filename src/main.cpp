@@ -16,7 +16,7 @@ int temp()
     
     std::vector<sf::CircleShape> all_circles;
     std::vector<Particle> all_particles;
-    std::vector<Particle> neighbors;
+    std::vector<Particle*> neighbors;
     Rectangle search_area = Rectangle{Vector{250, 250}, 250, 250};
     
     for (int i=0; i < number_of_particles; ++i) {
@@ -74,12 +74,12 @@ int temp()
         // std::cout<<"inserting into quad tree"<<std::endl;
         // Insert points into fresh Quad Tree
         for (size_t i = 0; i < number_of_particles; ++i){
-            insert_point(all_particles[i], quad_tree);
+            insert_point(&all_particles[i], quad_tree);
         }
         // show_details(quad_tree);
         query(search_area, quad_tree, neighbors);
         for (int i=0; i<neighbors.size(); i++){
-            std::cout<<neighbors[i].position.x<<", "<<neighbors[i].position.y<<std::endl;
+            std::cout<<neighbors[i]->position.x<<", "<<neighbors[i]->position.y<<std::endl;
         }
         
         window.clear(sf::Color::Black); 

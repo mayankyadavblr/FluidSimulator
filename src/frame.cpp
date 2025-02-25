@@ -3,7 +3,7 @@
 #include <chrono>
 #include <iostream>
 
-void update_particle(Particle& p, double dt){
+void update_particle(Particle* p, double dt){
     /*
     Updates a particle's position
     velocity and acceleration
@@ -13,10 +13,10 @@ void update_particle(Particle& p, double dt){
     x = ut + 1/2 at^2
     v = u + at
     */
-    Vector acceleration_projection = projection(p.acceleration, p.velocity);
+    Vector acceleration_projection = projection(p->acceleration, p->velocity);
 
-    p.position = p.position + p.velocity * dt + p.acceleration * 0.5 * pow(dt, 2);
-    p.velocity = p.velocity + p.acceleration * dt;
+    p->position = p->position + p->velocity * dt + p->acceleration * 0.5 * pow(dt, 2);
+    p->velocity = p->velocity + p->acceleration * dt;
 
     //p.acceleration = p.acceleration; NO CHANGE NEEDED
 
@@ -55,7 +55,7 @@ void update_frame(Frame& frame){
             }
         }
 
-        check_boundaries(frame);
+        check_boundaries(frame, frame.tr, frame.bl);
         
         for (size_t i = 0; i < frame.number_of_particles; ++i){
             update_particle(frame.all_particles[i], frame.dt);
@@ -68,38 +68,43 @@ void update_frame(Frame& frame){
 
 }
 
-void check_boundaries(Frame& frame){
+void check_boundaries(Frame& frame, Vector tr, Vector bl){
+    /*
+    Can be further optimized by using
+    query() to sample only the particles near 
+    the border
+    */
     for (size_t i = 0; i < frame.number_of_particles; ++i) {
-        Particle& p = frame.all_particles[i];
+        Particle* p = frame.all_particles[i];
         //RIGHT
-        if (p.position.x > frame.tr.x - p.radius) {
-            p.position.x = frame.tr.x - p.radius;
-            p.velocity.x = - p.velocity.x;
+        if (p->position.x > tr.x - p->radius) {
+            p->position.x = tr.x - p->radius;
+            p->velocity.x = - p->velocity.x;
         }
         //LEFT
-        if (p.position.x < frame.bl.x + p.radius){
-            p.position.x = frame.bl.x + p.radius;
-            p.velocity.x = - p.velocity.x;
+        if (p->position.x < bl.x + p->radius){
+            p->position.x = bl.x + p->radius;
+            p->velocity.x = - p->velocity.x;
         }
         //TOP
-        if (-p.position.y < frame.tr.y + p.radius) {
+        if (-p->position.y < tr.y + p->radius) {
             // std::cout<<"top collision"<<std::endl;
-            p.position.y = frame.tr.y + p.radius;
-            p.position.y = -p.position.y;
-            p.velocity.y = - p.velocity.y;
+            p->position.y = tr.y + p->radius;
+            p->position.y = -p->position.y;
+            p->velocity.y = - p->velocity.y;
         }
         //BOTTOM
-        if (-p.position.y > frame.bl.y - p.radius){
-            p.position.y = frame.bl.y - p.radius;
-            p.position.y = -p.position.y;
-            p.velocity.y = - p.velocity.y;
+        if (-p->position.y > bl.y - p->radius){
+            p->position.y = bl.y - p->radius;
+            p->position.y = -p->position.y;
+            p->velocity.y = - p->velocity.y;
         }
     }
     if (frame.divided){
-        check_boundaries(*frame.topLeft);
-        check_boundaries(*frame.topRight);
-        check_boundaries(*frame.bottomLeft);
-        check_boundaries(*frame.bottomRight);
+        check_boundaries(*frame.topLeft, tr, bl);
+        check_boundaries(*frame.topRight, tr, bl);
+        check_boundaries(*frame.bottomLeft, tr, bl);
+        check_boundaries(*frame.bottomRight, tr, bl);
     }
 }
 
@@ -146,8 +151,8 @@ void subdivide_frame(Frame& frame){
     frame.bottomRight->bl = frame.boundary.center + Vector{0, frame.boundary.height};
 }
 
-void insert_point(Particle& p, Frame& frame){
-    if (!contains(p.position, frame.boundary)){
+void insert_point(Particle* p, Frame& frame){
+    if (!contains(p->position, frame.boundary)){
         return;
     }
     if (frame.number_of_particles < frame.max_number_of_particles) {
@@ -187,12 +192,12 @@ bool intersects(Rectangle r1, Rectangle r2) {
     return true;
 }
 
-void query(Rectangle r, Frame& frame, std::vector<Particle>& found_particles) {
+void query(Rectangle r, Frame& frame, std::vector<Particle*>& found_particles) {
     if (!intersects(r, frame.boundary)){
         return;
     }
     for (int i=0; i<frame.number_of_particles; i++){
-        if (contains(frame.all_particles[i].position, r)){
+        if (contains(frame.all_particles[i]->position, r)){
             found_particles.push_back(frame.all_particles[i]);
         }
     }
@@ -211,14 +216,14 @@ void clear_frame(Frame* frame){
         clear_frame(frame->bottomLeft);
         clear_frame(frame->bottomRight);
     }
-    frame->all_particles = std::vector<Particle>();
+    frame->all_particles = std::vector<Particle*>();
 
     delete frame;
 }
 
 void clear_quad_tree(Frame& quad_tree){
     quad_tree.number_of_particles = 0;
-    quad_tree.all_particles = std::vector<Particle>();
+    quad_tree.all_particles = std::vector<Particle*>();
     quad_tree.divided = 0;
     if (quad_tree.divided){
         clear_frame(quad_tree.topLeft);

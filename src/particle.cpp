@@ -3,7 +3,7 @@
 #include <iostream>
 #include "frame.h"
 
-void detect_collision(Particle& p1, Particle& p2, double dt) {
+void detect_collision(Particle* p1, Particle* p2, double dt) {
     /*
     Given two particles, it first
     checks for intersection which is resolved
@@ -17,21 +17,22 @@ void detect_collision(Particle& p1, Particle& p2, double dt) {
     1. handle hard coding of 'dt'
     */
     // dt = 1.00/60.00;
-    double distance_btw_centers = distance(p1.position, p2.position);
-    if (distance_btw_centers < p1.radius + p2.radius) {
+    double distance_btw_centers = distance(p1->position, p2->position);
+    if (distance_btw_centers < p1->radius + p2->radius) {
+        std::cout<<"collision detected"<<std::endl;
         double collision_time = resolve_intersection(p1, p2, dt);
         resolve_collision(p1, p2);
         
         update_particle(p1, dt - collision_time);
         update_particle(p2, dt - collision_time);
     }
-    else if (distance_btw_centers == p1.radius + p2.radius){
+    else if (distance_btw_centers == p1->radius + p2->radius){
         resolve_collision(p1, p2);
     }
     
 }
 
-double resolve_intersection(Particle& p1, Particle& p2, double dt) {
+double resolve_intersection(Particle* p1, Particle* p2, double dt) {
     /*
     If particles are intersecting, push each out so
     they are tangential
@@ -51,21 +52,21 @@ double resolve_intersection(Particle& p1, Particle& p2, double dt) {
 //    double dt = 1.00/60.00; // Refactor code to not have to do this
 
     double collision_time = 0.0;
-    Particle p1_prev = inverse_update_particle(p1, dt);
-    Particle p2_prev = inverse_update_particle(p2, dt);
+    Particle p1_prev = inverse_update_particle(*p1, dt);
+    Particle p2_prev = inverse_update_particle(*p2, dt);
 
     collision_time = linear_interpolate_collision(p1_prev, p2_prev, dt); // Refactor to not have to hard code N
     
-    p1.position = p1_prev.position + p1_prev.velocity * collision_time;
-    p2.position = p2_prev.position + p2_prev.velocity * collision_time;
+    p1->position = p1_prev.position + p1_prev.velocity * collision_time;
+    p2->position = p2_prev.position + p2_prev.velocity * collision_time;
 
-    Vector line_of_contact = p1.position - p2.position;
+    Vector line_of_contact = p1->position - p2->position;
     line_of_contact = line_of_contact / magnitude(line_of_contact);
     
-    double distance_intersected = p1.radius + p2.radius - distance(p1.position, p2.position);
+    double distance_intersected = p1->radius + p2->radius - distance(p1->position, p2->position);
 
-    p1.position = p1.position + line_of_contact * (distance_intersected / 2.00);
-    p2.position = p2.position - line_of_contact * (distance_intersected / 2.00);
+    p1->position = p1->position + line_of_contact * (distance_intersected / 2.00);
+    p2->position = p2->position - line_of_contact * (distance_intersected / 2.00);
 
     return collision_time;
 
@@ -97,7 +98,7 @@ double linear_interpolate_collision(Particle p1, Particle p2, double dt, double 
     return dt;
 }
 
-void resolve_collision(Particle& p1, Particle& p2, double e) {
+void resolve_collision(Particle* p1, Particle* p2, double e) {
     /*
     Updates velocities of particles upon collision
     Gets projection of velocity along line of contact
@@ -111,12 +112,12 @@ void resolve_collision(Particle& p1, Particle& p2, double e) {
 
     */
 
-    Vector line_of_contact = p1.position - p2.position;
-    Vector speed_along_loc_p1 = projection(p1.velocity, line_of_contact);
-    Vector speed_along_loc_p2 = projection(p2.velocity, line_of_contact);
+    Vector line_of_contact = p1->position - p2->position;
+    Vector speed_along_loc_p1 = projection(p1->velocity, line_of_contact);
+    Vector speed_along_loc_p2 = projection(p2->velocity, line_of_contact);
     
-    p1.velocity = p1.velocity - speed_along_loc_p1 + speed_along_loc_p1 * (p1.mass - e*p2.mass)/(p1.mass + p2.mass) + speed_along_loc_p2 * ((1+e)*p2.mass)/(p1.mass + p2.mass);
-    p2.velocity = p2.velocity - speed_along_loc_p2 + speed_along_loc_p2 * (p2.mass - e*p1.mass)/(p1.mass + p2.mass) + speed_along_loc_p1 * ((1+e)*p1.mass)/(p1.mass + p2.mass);
+    p1->velocity = p1->velocity - speed_along_loc_p1 + speed_along_loc_p1 * (p1->mass - e*p2->mass)/(p1->mass + p2->mass) + speed_along_loc_p2 * ((1+e)*p2->mass)/(p1->mass + p2->mass);
+    p2->velocity = p2->velocity - speed_along_loc_p2 + speed_along_loc_p2 * (p2->mass - e*p1->mass)/(p1->mass + p2->mass) + speed_along_loc_p1 * ((1+e)*p1->mass)/(p1->mass + p2->mass);
  
 }
 

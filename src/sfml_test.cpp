@@ -16,7 +16,7 @@ int main()
     
     std::vector<sf::CircleShape> all_circles;
     std::vector<Particle> all_particles;
-    std::vector<Particle> neighbors;
+    std::vector<Particle*> neighbors;
     
     for (int i=0; i < number_of_particles; ++i) {
         Particle p;
@@ -70,7 +70,7 @@ int main()
         }
 
         for (size_t i = 0; i < number_of_particles; ++i){
-            insert_point(all_particles[i], quad_tree);
+            insert_point(&all_particles[i], quad_tree);
         }
 
         for (size_t i = 0; i < number_of_particles; ++i){
@@ -79,16 +79,19 @@ int main()
             100};
             
             query(search_area, quad_tree, neighbors);
-            for (size_t j = 0; j < neighbors.size(); j++){
-                detect_collision(all_particles[i], neighbors[j], quad_tree.dt);
+            if (neighbors.size() > 0){
+                // std::cout<<"neighbors detected"<<neighbors.size()<<std::endl;
             }
-            neighbors = std::vector<Particle>();
+            for (size_t j = 0; j < neighbors.size(); j++){
+                detect_collision(&all_particles[i], neighbors[j], quad_tree.dt);
+            }
+            neighbors = std::vector<Particle*>();
         }
         
-        check_boundaries(quad_tree);
+        check_boundaries(quad_tree, quad_tree.tr, quad_tree.bl);
 
         for (size_t i = 0; i < number_of_particles; ++i){
-            update_particle(all_particles[i], quad_tree.dt);
+            update_particle(&all_particles[i], quad_tree.dt);
         }
         
         
