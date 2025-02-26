@@ -14,7 +14,7 @@ struct Rectangle {
 struct Frame {
     double dt = 1.00/60.00; // Set to inverse of desired frame rate
     int number_of_particles=0;
-    int max_number_of_particles = 4;
+    int max_number_of_particles = 10;
     std::vector<Particle*> all_particles;
 
     Rectangle boundary;
