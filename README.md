@@ -22,6 +22,7 @@ To mess around with starting conditions:
 * Refactor Rectangle struct 
 * Clean up code
 * Documentation
+* Investigate energy creation during collisions
 
 
 
@@ -67,3 +68,7 @@ Feb-23rd
 
 Feb-24th
 * Finally fixed quad tree
+
+Feb-25th
+* Added energy counters
+* Checked for memory leaks
