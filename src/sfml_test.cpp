@@ -106,12 +106,12 @@ int main()
         for (size_t i = 0; i < number_of_particles; ++i){
             update_particle(&all_particles[i], quad_tree.dt);
         }
-        // KE = 0;
-        // PE = 0;
-        // for (size_t i = 0; i < number_of_particles; ++i){
-        //     PE += all_particles[i].mass * (all_particles[i].position.y+1000) * 9.81/1000.00;
-        //     KE += 0.5 * all_particles[i].mass * pow(magnitude(all_particles[i].velocity), 2)/1000.00;
-        // }
+        KE = 0;
+        PE = 0;
+        for (size_t i = 0; i < number_of_particles; ++i){
+            PE += all_particles[i].mass * (all_particles[i].position.y+1000) * 9.81/1000.00;
+            KE += 0.5 * all_particles[i].mass * pow(magnitude(all_particles[i].velocity), 2)/1000.00;
+        }
         
         window.clear(sf::Color::Black); 
         for (int i = 0; i < number_of_particles; ++i) {
@@ -123,13 +123,13 @@ int main()
         if (frame_count == 50) {
             text.setString(std::to_string(time));
             frame_count = 0;
-            // TE = PE + KE;
-            // total_energy.setString(std::to_string(TE));
+            TE = PE + KE;
+            total_energy.setString(std::to_string(TE));
         }
         frame_count++;
         window.draw(text);
-        // window.draw(total_energy);
-        // draw_quad_tree(window, quad_tree);
+        window.draw(total_energy);
+        draw_quad_tree(window, quad_tree);
         clear_quad_tree(quad_tree);
         window.display();
         // break;
