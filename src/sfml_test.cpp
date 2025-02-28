@@ -7,7 +7,7 @@
 
 int main()
 {
-    int number_of_particles = 2000;
+    int number_of_particles = 300;
 
     auto window = sf::RenderWindow(sf::VideoMode({1000, 1000}), "Fluid Simulator");
     window.setFramerateLimit(144);
@@ -29,7 +29,7 @@ int main()
         // p.velocity = Vector{x, y};
 
         double mass = rand()%5 + 10;
-        p.mass = mass;
+        // p.mass = mass;
 
         double radius = rand()%10+1;
         p.radius = radius;
@@ -129,7 +129,7 @@ int main()
         frame_count++;
         window.draw(text);
         window.draw(total_energy);
-        draw_quad_tree(window, quad_tree);
+        // draw_quad_tree(window, quad_tree);
         clear_quad_tree(quad_tree);
         window.display();
         // break;

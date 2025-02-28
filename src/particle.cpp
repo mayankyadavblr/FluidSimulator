@@ -21,6 +21,7 @@ void detect_collision(Particle* p1, Particle* p2, double dt) {
     if (distance_btw_centers < p1->radius + p2->radius) {
         
         double collision_time = resolve_intersection(p1, p2, dt);
+        // resolve_intersection(p1, p2, dt);
         resolve_collision(p1, p2);
         
         update_particle(p1, dt - collision_time);
@@ -57,8 +58,10 @@ double resolve_intersection(Particle* p1, Particle* p2, double dt) {
 
     collision_time = linear_interpolate_collision(p1_prev, p2_prev, dt); // Refactor to not have to hard code N
     
-    p1->position = p1_prev.position + p1_prev.velocity * collision_time;
-    p2->position = p2_prev.position + p2_prev.velocity * collision_time;
+    p1->position = p1_prev.position + p1_prev.velocity * collision_time + p1->acceleration * 0.5 * collision_time;
+    p1->velocity = p1->velocity + p1->acceleration * collision_time;
+    p2->position = p2_prev.position + p2_prev.velocity * collision_time + p1->acceleration * 0.5 * collision_time;
+    p2->velocity = p2->velocity + p2->acceleration * collision_time;
 
     Vector line_of_contact = p1->position - p2->position;
     line_of_contact = line_of_contact / magnitude(line_of_contact);
@@ -87,8 +90,11 @@ double linear_interpolate_collision(Particle p1, Particle p2, double dt, double 
     // double dt = 1.00/60.00;
     double new_dt = dt/N;
     for (int i=1; i < N+1; i++){
-        p1.position = p1.position + p1.velocity * new_dt;
-        p2.position = p2.position + p2.velocity * new_dt;
+        p1.position = p1.position + p1.velocity * new_dt + p1.acceleration * 0.5 * new_dt;
+        p1.velocity = p1.velocity + p1.acceleration * new_dt;
+        
+        p2.position = p2.position + p2.velocity * new_dt + p2.acceleration * 0.5 * new_dt;
+        p2.velocity = p2.velocity + p2.acceleration * new_dt;
 
         if (distance(p1.position, p2.position) < p1.radius + p2.radius){
             return i*new_dt;
