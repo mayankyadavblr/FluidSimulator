@@ -9,7 +9,7 @@ int main()
 {
     int number_of_particles = 300;
 
-    auto window = sf::RenderWindow(sf::VideoMode({1000, 1000}), "Fluid Simulator");
+    auto window = sf::RenderWindow(sf::VideoMode({500, 500}), "Fluid Simulator");
     window.setFramerateLimit(144);
     double x = window.getSize().x;
     double y = window.getSize().y;
@@ -29,7 +29,7 @@ int main()
         // p.velocity = Vector{x, y};
 
         double mass = rand()%5 + 10;
-        // p.mass = mass;
+        p.mass = mass;
 
         double radius = rand()%10+1;
         p.radius = radius;

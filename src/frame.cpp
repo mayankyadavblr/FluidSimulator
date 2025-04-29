@@ -88,15 +88,14 @@ void check_boundaries(Frame& frame, Vector tr, Vector bl){
         }
         //TOP
         if (-p->position.y < tr.y + p->radius) {
-            // std::cout<<"top collision"<<std::endl;
-            p->position.y = tr.y + p->radius;
-            p->position.y = -p->position.y;
+            // p->position.y = tr.y + p->radius;
+            // p->position.y = -p->position.y;
             p->velocity.y = - p->velocity.y;
         }
         //BOTTOM
         if (-p->position.y > bl.y - p->radius){
-            p->position.y = bl.y - p->radius;
-            p->position.y = -p->position.y;
+            // p->position.y = bl.y - p->radius;
+            // p->position.y = -p->position.y;
             p->velocity.y = - p->velocity.y;
         }
     }
